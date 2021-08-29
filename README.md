@@ -17,11 +17,11 @@ files possible, with the option to disable, rather than enable them. -->
 
 <!-- advertize the fact that all the boolean config variables creates high customizability? control over process? also add mixin pattern for it? -->
 
-## Install
 <!-- For use in node project: -->
+<!-- ## Install
 ```shell
-npm install SheetMin --save
-```
+npm install WebMin --save
+``` -->
 <!-- it also serves as a tool that increases perfrmance. download/init AND exe sicne we remove empty sel (which must be blinked)   -->
 <!-- might be unsafe because they can change the behviour of app -->
 
@@ -57,7 +57,7 @@ To call the minification, while overriding the default config, pass an object as
 ```js
 var minify = require('WebMin');
 
-// any config passed will override the default value
+// any config passed will override the default config value
 minify("body {}", {
   removeEmptySelectors: false, // will leave empty selectors untouched, normally these would be removed during minification       
 })
