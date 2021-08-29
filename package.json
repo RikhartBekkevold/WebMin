@@ -1,0 +1,20 @@
+{
+  "name": "SheetMin",
+  "version": "0.1.0",
+  "created": "9/7/2021",
+  "description": "A combined html/css minifier",
+  "main": "index.js",
+  "scripts": {
+    "test2": "npm run ./test/index.js",
+    "test": "node ./test/index.js"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "minifier",
+    "minify"
+  ],
+  "author": "Rikhart Bekkevold",
+  "repository": "https://github.com/RikhartBekkevold/SheetMin",
+  "license": "MIT"
+}

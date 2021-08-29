@@ -1,0 +1,964 @@
+{
+  "type": "Stylesheet",
+  "rules": [
+    {
+      "type": "CharsetRule",
+      "encoding": {
+        "type": "String",
+        "val": "utf-8"
+      }
+    },
+    {
+      "type": "ImportRule",
+      "url": {
+        "type": "String",
+        "val": "path.woff"
+      },
+      "media": [
+        {
+          "type": "Identifier",
+          "name": "print"
+        }
+      ]
+    },
+    {
+      "type": "ImportRule",
+      "url": {
+        "type": "Function",
+        "name": "url",
+        "arguments": [
+          {
+            "type": "String",
+            "val": "dkkdsa"
+          }
+        ]
+      },
+      "media": [
+        {
+          "type": "Identifier",
+          "name": "print"
+        }
+      ]
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "ClassSelector",
+              "name": "visible"
+            }
+          ]
+        },
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "TagSelector",
+              "name": "span"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": [
+          {
+            "type": "Statement",
+            "important": true,
+            "property": "height",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Dimension",
+                  "val": "100",
+                  "unit": "px"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "height",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Dimension",
+                  "val": "100",
+                  "unit": "px"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "ClassSelector",
+              "name": "name"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": []
+      }
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "TagSelector",
+              "name": "name"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": []
+      }
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "IdSelector",
+              "name": "name"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": []
+      }
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "TagSelector",
+              "name": "input"
+            },
+            {
+              "type": "AttributeSelector",
+              "name": {
+                "type": "Identifier",
+                "name": "type"
+              },
+              "operator": "$=",
+              "value": {
+                "type": "String",
+                "val": "text"
+              }
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": []
+      }
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "AttributeSelector",
+              "name": {
+                "type": "Identifier",
+                "name": "type"
+              },
+              "operator": "$=",
+              "value": {
+                "type": "String",
+                "val": "text"
+              }
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": []
+      }
+    },
+    {
+      "type": "KeyframesRule",
+      "name": "mymove",
+      "arguments": [
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "from"
+                }
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "Statement",
+                "important": false,
+                "property": "top",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Dimension",
+                      "val": "0",
+                      "unit": "px"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "Percentage",
+                  "val": "10"
+                }
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "Statement",
+                "important": false,
+                "property": "top",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Dimension",
+                      "val": "200",
+                      "unit": "px"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "Percentage",
+                  "val": "10"
+                }
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "Statement",
+                "important": false,
+                "property": "top",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Dimension",
+                      "val": "200",
+                      "unit": "px"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "TagSelector",
+              "name": "span"
+            },
+            {
+              "type": "PseudoClassSelector",
+              "name": "hover"
+            },
+            {
+              "type": "AttributeSelector",
+              "name": {
+                "type": "Identifier",
+                "name": "type"
+              },
+              "operator": "$=",
+              "value": {
+                "type": "String",
+                "val": "text"
+              }
+            },
+            {
+              "type": "AttributeSelector",
+              "name": {
+                "type": "Identifier",
+                "name": "v-cloak"
+              },
+              "operator": null,
+              "value": null
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": [
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "font-size",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Number",
+                  "val": "10"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "inherit"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "TagSelector",
+              "name": "body"
+            },
+            {
+              "type": "PsuedoElementSelector",
+              "name": "after"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": []
+      }
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "ClassSelector",
+              "name": "progress"
+            },
+            {
+              "type": "ClassSelector",
+              "name": "indeterminate"
+            },
+            {
+              "type": "PseudoClassSelector",
+              "name": "after"
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": [
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "content",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "String",
+                  "val": ""
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "position",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Identifier",
+                  "name": "absolute"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "background-color",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Identifier",
+                  "name": "inherit"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "top",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Number",
+                  "val": "0"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "left",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Number",
+                  "val": "0"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "bottom",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Number",
+                  "val": "0"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "will-change",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Identifier",
+                  "name": "left"
+                },
+                {
+                  "type": "Identifier",
+                  "name": "right"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "-webkit-animation",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Identifier",
+                  "name": "indeterminate-short"
+                },
+                {
+                  "type": "Dimension",
+                  "val": "2.1",
+                  "unit": "s"
+                },
+                {
+                  "type": "Function",
+                  "name": "cubic-bezier",
+                  "arguments": [
+                    {
+                      "type": "Number",
+                      "val": "0.165"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "0.84"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "0.44"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "1"
+                    }
+                  ]
+                },
+                {
+                  "type": "Identifier",
+                  "name": "infinite"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "animation",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Identifier",
+                  "name": "indeterminate-short"
+                },
+                {
+                  "type": "Dimension",
+                  "val": "2.1",
+                  "unit": "s"
+                },
+                {
+                  "type": "Function",
+                  "name": "cubic-bezier",
+                  "arguments": [
+                    {
+                      "type": "Number",
+                      "val": "0165"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "084"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "044"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "1"
+                    }
+                  ]
+                },
+                {
+                  "type": "Identifier",
+                  "name": "infinite"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "-webkit-animation-delay",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Dimension",
+                  "val": "1.15",
+                  "unit": "s"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "animation-delay",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Dimension",
+                  "val": "1.15",
+                  "unit": "s"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "MediaQueryList",
+      "queries": [
+        {
+          "type": "MediaRule",
+          "def": [
+            {
+              "type": "Identifier",
+              "name": "screen"
+            },
+            {
+              "type": "Identifier",
+              "name": "and"
+            },
+            {
+              "type": "MediaFeature",
+              "prop": {
+                "type": "Identifier",
+                "name": "max-width"
+              },
+              "val": {
+                "type": "Dimension",
+                "val": "900",
+                "unit": "px"
+              }
+            }
+          ]
+        },
+        {
+          "type": "MediaRule",
+          "def": [
+            {
+              "type": "Identifier",
+              "name": "screen"
+            }
+          ]
+        },
+        {
+          "type": "MediaRule",
+          "def": [
+            {
+              "type": "MediaFeature",
+              "prop": {
+                "type": "Identifier",
+                "name": "max-width"
+              },
+              "val": {
+                "type": "Identifier",
+                "name": "inherit"
+              }
+            }
+          ]
+        }
+      ],
+      "selectors": [
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "html"
+                }
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "Statement",
+                "important": true,
+                "property": "height",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Dimension",
+                      "val": ".3",
+                      "unit": "px1"
+                    },
+                    {
+                      "type": "Number",
+                      "val": ".3"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "20.2"
+                    },
+                    {
+                      "type": "Dimension",
+                      "val": "20.2",
+                      "unit": "px"
+                    },
+                    {
+                      "type": "Dimension",
+                      "val": "100",
+                      "unit": "px"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "Statement",
+                "important": false,
+                "property": "width",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Function",
+                      "name": "calc",
+                      "arguments": [
+                        {
+                          "type": "Dimension",
+                          "val": "100.",
+                          "unit": "px"
+                        },
+                        {
+                          "type": "Identifier",
+                          "name": "-"
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "1.4"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "body"
+                }
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "statements": [
+              {
+                "type": "Statement",
+                "important": false,
+                "property": "background-color",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Identifier",
+                      "name": "lightblue"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "Statement",
+                "important": false,
+                "property": "content",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "String",
+                      "val": "A paragraph"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "IdSelector",
+              "name": "about"
+            },
+            {
+              "type": "Combinator",
+              "name": "+"
+            },
+            {
+              "type": "ClassSelector",
+              "name": "visible"
+            }
+          ]
+        },
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "TagSelector",
+              "name": "span"
+            },
+            {
+              "type": "AttributeSelector",
+              "name": {
+                "type": "Identifier",
+                "name": "type"
+              },
+              "operator": "=",
+              "value": {
+                "type": "String",
+                "val": "text"
+              }
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "statements": [
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "color",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Function",
+                  "name": "rgba",
+                  "arguments": [
+                    {
+                      "type": "Number",
+                      "val": "22"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "29"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "120"
+                    },
+                    {
+                      "type": "Number",
+                      "val": "0"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": true,
+            "property": "height",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Dimension",
+                  "val": "100",
+                  "unit": "px"
+                }
+              ]
+            }
+          },
+          {
+            "type": "Statement",
+            "important": false,
+            "property": "display",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Identifier",
+                  "name": "flex"
+                },
+                {
+                  "type": "Hex",
+                  "val": "9da153"
+                },
+                {
+                  "type": "String",
+                  "val": "dca"
+                },
+                {
+                  "type": "Number",
+                  "val": "1.0"
+                },
+                {
+                  "type": "Dimension",
+                  "val": "10",
+                  "unit": "px"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

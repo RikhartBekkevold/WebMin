@@ -1,0 +1,80 @@
+@charset "utf-8";
+@import 'path.woff' print;
+@import url("dkkdsa") print;
+
+.visible,
+span
+{
+  height: 100px !important;
+  height: 100px;
+}
+
+.name {}
+name {}
+#name {}
+
+input [type$='text'] {}
+[type$='text'] {}
+
+@keyframes mymove {
+  from {top: 0px;}
+  /* still parses these, just adds selector: []
+    what is my intention?
+   */
+  /* 10 {top: 200px;}
+  10px {top: 200px;}
+  .dasto {top: 200px;} */
+  10% {top: 200px;}
+  10% {top: 200px;}
+}
+
+span:hover [type$='text'] [v-cloak] {
+  font-size: 10 inherit;
+}
+
+ body::after {}
+
+.progress .indeterminate:after {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left, right;
+  -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+          animation: indeterminate-short 2.1s cubic-bezier(0165, 084, 044, 1) infinite;
+  -webkit-animation-delay: 1.15s;
+          animation-delay: 1.15s;
+}
+
+/* #about .visible span,
+span,
+1span
+{
+  height: .3px1 .3 20.2 20.2px 100px !important;
+  width: calc(100.px - 1.4%);
+}
+*/
+@media screen and (max-width: 900px), screen,(max-width: inherit)  {
+  html {
+    height: .3px1 .3 20.2 20.2px 100px !important;
+    width: calc(100.px - 1.4%);   /* tokenizer dont understnad +? */
+
+  }
+
+  body {
+    background-color: lightblue;
+    content: "A paragraph";
+  }
+}
+
+/* @import url("dkkdsa") print; */
+
+ #about + .visible,
+span [type="text"]
+{
+  color: rgba(22, 29, 120, 0);
+  height:         100px !important;
+  display: flex #9da153 "dca"          1.0 10px ;
+}

@@ -1,0 +1,425 @@
+
+
+/* @counter-style thumbs {
+  system: cyclic;
+  symbols: "\1F44D";
+  suffix: " ";
+}
+
+ul {
+  list-style: thumbs;
+}
+
+@viewport {
+width: 100vw;
+}
+
+@viewport {
+  zoom: 0.75;
+  min-zoom: 0.5;
+  max-zoom: 0.9;
+}
+
+
+@document url("http://www.w3.org/"), url-prefix("http://www.w3.org/Style/"), domain("mozilla.org"), media-document("video"), regexp("https:.*") {
+  body {
+    color: purple;
+    background: yellow;
+  }
+}
+@document {
+  body {
+    cowlor: purple;
+    backfground: yellow;
+  }
+}
+
+
+@color-profile --swop5c {
+  src: url('https://example.org/SWOP2006_Coated5v2.icc');
+} */
+
+/* this is webkit? browsers define? */
+/* @property --my-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #c0ffee;
+}
+
+
+@font-feature-values Font, "tree", Two {
+  @styleset {
+    nice-style: 4;
+  }
+}
+@font-feature-values Font Two {
+  @styleset {
+    nice-style: 4;
+  }
+}
+@font-feature-values"Font""Two" ident Font3 {
+  @styleset {
+    nice-style: 4;
+  }
+} */
+
+
+
+/* if charset, and not start
+or does before toplevel just check if charst? so it can do BEFORE parse? hence WHY need to be first? if not "" then its wrong. not if isString   */
+
+/* i already parse custom idnet and the variable fn? i just dont sep it? */
+
+/* idnet = reserver/keywrod?  */
+
+/*
+@property <custom-property-name> {
+  <declaration-list>
+}
+
+
+
+.header {
+  background-color:   color(--swop5c 0% 70% 20% 0%);
+} */
+
+
+#app3 [id|="home"   s] [id^="home" i] {
+  animation-name: slide-in;
+}
+
+/* #app2 [id s] [id~="home"] [id$="home"] {
+  animation-name: slide-in;
+}
+
+#app[v-cloak] {
+  animation: 2s slide-in;
+  animation-name: fade-out;
+}
+
+
+.app {
+  animation-name: slide-out;
+} */
+
+/* it deleted this becaue of meida.. thats not safe! we must exlude if panet.type !== visite.parent.type */
+/* if remove end, we will delee ALL in ast! */
+
+/* @keyframes mymode  {
+  frodasm  { width: 20px; }
+} */
+
+
+/* safe to change name. problem occurs when animation name dont match. then loop should puhs, but not do something becaue if in map should exists */
+/* @keyframes slide-in {
+  from {margin: 20px;}
+  from {margin: 30px;}
+}
+
+@keyframes fade-out {
+  from {margin: 20px;}
+  from {margin: 30px;}
+} */
+
+
+
+@page {
+ margin: 1cm;
+}
+
+@page dasd:first:first {
+ margin: 2cm;
+}
+
+@page dasd[dark]kdak[type="text"] {
+ margin: 2cm;
+}
+
+@page dasd:first ab:first {
+ margin: 2cm;
+}
+
+@page :fidrst:firhdst:fiarst {
+ margin: 2cm;
+}
+
+
+  /* @page:first:first {
+   margin: 2cm;
+ } */
+
+ /* @supports (display: grid) {
+   div {
+     display: grid;
+   }
+ }
+
+ @supports not (display: grid) {
+   div {
+     float: right;
+   }
+ } */
+
+
+
+
+
+@namespace URL("path-path");
+@namespace svg url("path-path");
+@namespace prefix "path";
+
+/* @charset "das"; */
+
+/* #app { */
+  /* --main-color: black;
+  color: var(--main-color); */
+
+  /* margin: 201e230 20e-20 20e+20 20.23e20; */
+
+  /* we can easily loop and replace each var with the value itself! */
+/* } */
+
+/* make it delete smaller to larger in its own visitor? instead of delete all sel/detect in larger? each visitor detect self. then
+app can delete itself since empty - we just delete all overriding props on exit, so when it exit seletor, it can see its empty and
+delete self. aka: all nodes check if their ARRAY is empty and if so, deletes self/parnet.arr.splice(idx)? trick is to do on exit and check in visitor itself?
+doenst work when we want to check ANOTHER node and delete this ANOTHER node? only works for self and exit?
+make ALL exit? for smaller to larger delete?  */
+
+/* #app {
+  margin: 30px;
+} */
+
+
+
+/* @media only screen and (max-width: inherit) {
+  .app {
+    padding: 20px;
+  }
+
+  .app {
+    padding: 30px;
+  }
+}
+@media only screen and (max-width: inherit) {
+  .app {
+    padding: 20px;
+  }
+
+  .app {
+    padding: 30px;
+  }
+}
+
+
+
+@import "navigation.css"  print;
+@import url("navigation.css"); */
+
+
+
+
+
+
+/* body {
+  webkidtd: red calc(32e-23em - 20em + 20px) !important;
+  webkdidtd:  50px 20px !important;
+}
+body {
+  webkidtd:  50px 20px !important;
+  webkdidtd:  50px 20px !important;
+} */
+
+/* bug. fix. then try ":first:first {" */
+hda:first {
+  margin: 2px;
+}
+
+
+
+/* does textarea sanytinize? its inserted in diff way.. */
+
+/* // the body inside here is not the same */
+
+/* there are shorthand props taht uses -? */
+
+/* @media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+} */
+
+
+/* is vs isnt preds */
+
+shadow {}
+/* transform runs after. and comment wasnt kept. so it removes!
+if keep commnets, shadow is kept */
+
+
+*.daark.clasd > #namadad {
+  pddadding: calc(20%, 30%, 50px, 29);
+  path: url("dasd") "20px" url("dasd");
+  /* pdding: calc(20 - 20); */
+  margin:20px 20px 10% 20px 10% 20;
+}
+
+.dadrk#namadad {
+  padding:50px;
+}
+
+
+/* .class {
+  margin: 20px 20px 20px 20px;
+} */
+/* #- +- [name*=""] {
+  padding: calc(30.0em - 20.0);
+  margin: calc(-30.0% * 20.0px);
+  color: calc(-30px + 000.20em);
+  background: calc(000.09100 / 20.0em);
+}
+*.class {
+  margin: inherit;
+}
+
+#-bame {
+  border: 2e3;
+  border: --.1px solid red;
+  border: +1. ddas   2.2  px solid red;
+}
+
+#\-naem {
+
+} */
+
+
+/* id="1bname" */
+
+/* if more than 6 chars. we ignore, becaue its invalid? when do we check length? */
+
+/* converts - to nan, bceau its parsed as num.  */
+/* all other operators are fine thouhg. since they actually parsed as operator */
+/* making parsed as op solves it, but.. assoc with num still needed..*/
+/* asociate later by token order (or char order just as good me thinks.
+then can check if space aftr - or if num is before or after?), or record if space?  */
+
+/* decide by token stream when in context/fn to know what it is */
+
+/* if pred and parse fn being diff. two ways.  */
+
+/* maybe do it in transform instead?! since thats after as exists. so things are put in correct places? */
+
+/* body.dark, .name {
+  codlor: rgb(10, 20, 30);
+  margin: 0px 10px;
+  height: 0px;
+  margin: 0px 10px;
+  margin: 0px;
+  margin: 0394px 10px;
+  margin: 0394 !important;
+} */
+
+
+
+
+
+/* #name .dark {
+  padding: 20px;
+}
+
+#name .dark {
+  padding: 20px;
+} */
+
+/* same element, higher precedence, same prop  */
+
+/* removeDupliSelectors
+removeDupliDeclarations
+removeOverridenDeclarations (selectors) */
+
+/* 30 is parsed? or ignored? 0 dont need unit, since its the same for all. but is 30 parsed as num or ignored? */
+
+/* #app.name{} */
+
+/* @media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+} */
+
+/* #name .light {
+  padding: 20px;
+}
+
+#name .dark {
+  padding: 20px;
+} */
+
+/* these have same spec. but refer to different elements, so we cant remove? THEY must target same elements too! ALL the same?
+we cant remove padding for these
+
+same path is needed, since only last wont garantee we are targeting the same elements?
+
+
+if selectorPattern same as another selector pattern. we know its the same - so dupli
+if keyselector same, we dont overlap for all. unless we check html?
+// if selector has SAME name we do what? */
+
+
+/* %
+#project, body .dark {
+  border: -.39e+22;
+  border: -.49%;
+  border: -59;
+  background-color: whItesmoke  ;
+  border: +-69e-22;
+} */
+/* why this parsed? inccorect syntax. it delim/removes +? counts as operator? aprses as combinator
+not num. and combinator hit before operaotr. no. but whitespace. when parsed as combi dont get added because wrong scope
+whenparsed as operaotr.. */
+/* color: #000000;
+background: #363636;
+background-color: #ff3388; */
+
+/* order to exlcude. or make sure EACH one excldue the other, exlude WHAT it cant be, not just allowe waht it CAN.
+it needs to exlucde / go past if if not correct - so error validation in that way i guess
+then order dont matter */
+
+/* incomplete url. aka inomcplete string? check for undefined  */
+/* makeing to background works fine bacayse other states still not overrdien?
+if i remove dupli first dlc, then waht? i can end up removing? no diff args? but color...
+
+add minfieir cli api and online
+
+deleeDpilieDecl - cant remove if values wastlyful diff? if overriden only 1px border, does the others get reset to def, no!? pretty sure not
+so also only delete if argumetn has same number of args! since order must be same. dont need to check if same value type
+deleteOVerridenDecl due to precedence
+
+
+from dt to dt - convert fns . compiler is that, just over many transform steps! */
+
+/* endless loop = dont skip past. get stuck checking the same char. */
+
+/* test ident names too */
+/* --transition: 23;  */
+/* -transition: 23;  */
+/* -1transition: 23;  */
+/* 1transition: 23;  */
+
+/* color: rgb(20, 30, 4); - cannot read property val of undefined. url: cannot understand type in traverser */
+/* shoudl make white #fff - change ffffff in map to shortest, should solve ALL */
+
+/* // printing process is like loging? */
+/* dont expose tokenizer in parsr? i wont to print, but dotn want user to aceces. should be priv? */
+
+/* #id {
+  width: 20px;
+  width: 30px;
+  height: 30px;
+  border: 30px;
+} */
+/* open with keyprtess, or cmd, todo o  f project - how?
+it ignores stuff written here? thinks its a selector? */
+
+
+/* this might target elements the other dont. we cant tell by selector. but SOME html elements will be affected by it */
+/* check that still same spec with > */

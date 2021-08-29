@@ -1,0 +1,14 @@
+{
+  "name": "CSS_Compiler",
+  "version": "0.1.0",
+  "created": "12/8/2020",
+  "description": "Parses CSS into an AST",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rikhart Bekkevold",
+  "repository": "https://github.com/RikhartBekkevold/CSS-parser",
+  "license": "MIT"
+}
