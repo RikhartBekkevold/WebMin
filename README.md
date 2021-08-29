@@ -1,5 +1,5 @@
 # WebMin
-A CSS  minifier that enables most flags by default in order to achieve the smallest
+A CSS  minifier that enables most flags by default, in order to achieve the smallest
 files possible, with the option to disable, rather than enable them.
 <!-- A combined CSS and HTML minifier (website minifier) that enables most flags by default in order to achieve the smallest
 files possible, with the option to disable, rather than enable them. -->
@@ -82,7 +82,9 @@ minify("body {margin: 2px;}", {
 ```
 
 ## Licence
-MIT
+<a href="https://github.com/RikhartBekkevold/WebMin/blob/main/LICENSE.md">MIT</a>
+
+
 
 
 <!-- removeOverridenDeclarations: true, // removes any sort of need for manually checking! the minifier can detect if something is uneccessary -->
