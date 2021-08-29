@@ -40,8 +40,8 @@ smaller/betetr -->
 # Api
 # can also be run as browser - host? -->
 
+
 Simple use-case:
-(The string must represent _valid_ CSS. The minifier cannot work with invalid CSS.)
 
 <!-- version that reads and writes to help make clear for novice? cli must do it atleast, since cmd, file with yarg? shebang? -->
 ```js
@@ -52,19 +52,23 @@ var min_css = minify("body {margin: 2px;}");
 console.log(min_css); // -> "body{margin:2px;}"
 ```
 
-To call the minification, while overriding the default config, pass an object as the second argument:
+Take note that the string must represent _valid_ CSS. The minifier _cannot_ work with invalid CSS.
+
+You can customize the minification process by overriding many of the default config variables used
+during the process, to do so pass an object as the second argument:
 
 ```js
 var minify = require('WebMin');
 
 // any config passed will override the default config value
-minify("body {}", {
+var min_css = minify("body {}", {
   removeEmptySelectors: false, // will leave empty selectors untouched, normally these would be removed during minification       
 })
+
+console.log(min_css); // -> "body{}"
 ```
 
-Here is a list of all config options currently available, most of which
-is true by default, but can be set to false.
+Here is a list of all config options currently available:
 
 ```js
 minify("body {margin: 2px;}", {
