@@ -17,7 +17,7 @@ files possible, with the option to disable, rather than enable them. -->
 
 <!-- advertize the fact that all the boolean config variables creates high customizability? control over process? also add mixin pattern for it? -->
 
-# Install
+## Install
 <!-- For use in node project: -->
 ```shell
 npm install SheetMin --save
@@ -45,7 +45,7 @@ Simple use-case:
 
 <!-- version that reads and writes to help make clear for novice? cli must do it atleast, since cmd, file with yarg? shebang? -->
 ```js
-var minify = require('SheetMin');
+var minify = require('WebMin');
 
 var min_css = minify("body {margin: 2px;}");
 
@@ -55,15 +55,12 @@ console.log(min_css); // -> "body{margin:2px;}"
 To call the minification, while overriding the default config, pass an object as the second argument:
 
 ```js
-var minify = require('SheetMin');
+var minify = require('WebMin');
 
 // any config passed will override the default value
-minify("body {margin: 2px;}", {
-  removeEmptySelectors: true,      
-  shortenUnsafeHex: false,
-  replaceColorNameWithHex: true
+minify("body {}", {
+  removeEmptySelectors: false, // will leave empty selectors untouched, normally these would be removed during minification       
 })
-// specify the ones u wnat to change (link all?) simpel xample, and then CHNGE ALL? or link below to all props
 ```
 
 Here is a list of all config options currently available, most of which
@@ -83,6 +80,9 @@ minify("body {margin: 2px;}", {
   prependComment: "",               // a comment that will be added at the start of the minified CSS
 })
 ```
+
+## Licence
+MIT
 
 
 <!-- removeOverridenDeclarations: true, // removes any sort of need for manually checking! the minifier can detect if something is uneccessary -->
