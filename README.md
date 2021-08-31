@@ -81,7 +81,7 @@ minify("body {margin: 2px;}", {
   removeEmptySelectors: true,       // removes a selector if it has no declarations
   useShortestColorValue: true,      // determines if a hex value (#fff) or colorname (white) is shortest, and uses it
   replaceRgbWithHex: true,          // replaces rgb values (eg: rgb(2,3,5) or rgba(2,3,5,.5)) values with a shorter hex value instead (also inc compat?)
-  prependComment: "",               // a comment that will be added at the start of the minified CSS
+  prependComment: "",               // a comment that will be added at the start of the minified CSS. Add /**/ and newlines self.
 })
 ```
 

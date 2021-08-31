@@ -7,6 +7,10 @@ module.exports = {
   // "background-size": "background", // baclkground: inherit 20px - but bigger? and inherit overrides aswell if already a backriund prop
   // "background-position": "background",
 
+
+  // bacgorund an animation is the best examples to use? we assume only they exists for now? 
+
+
   // margin
   // margin top - fits a positon
   // merge - what if the decl has diff values? like two margins/backgrund? cant just keep last?

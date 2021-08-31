@@ -3,15 +3,17 @@
 const pp = require('./parser').Parser.prototype;
 
 ////////////////////////////////
-pp.parse = function() {
+pp.parse = function(config) {
   var ast = {
     type: "Stylesheet",
     rules: []
   }
 
-  // if program starts with whitespace, we need to consume it first
+  if (this.isCharsetRule()) ast.rules.push(this.parseCharset()), this.next()
+  if (config.prependComment !== "") ast.rules.push(this.parseComment(config.prependComment))
+
+  // is this uneccessary?
   if (this.isWhitespace()) this.next()
-  // parse charset like this? then we dont parse charset after at all, disallowing two charsets
 
   while (this.token !== undefined) {
     var node = this.parseToplevel()
@@ -30,7 +32,6 @@ pp.parseToplevel = function(noImp, isKeyframe) {
   if (this.isDelim())               return this.parseDelim()      // Unknown|illigal
   if (this.isMediaQuery())          return this.parseMediaList()
   if (this.isKeyframes())           return this.parseKeyframes()
-  if (this.isCharsetRule())         return this.parseCharset()
   if (this.isFontface())            return this.parseFontface()
   if (this.isNamespace())           return this.parseNamespaceRule()
   if (this.isImportRule())          return this.parseImport()
@@ -95,9 +96,8 @@ pp.parseImport = function() {
 
 
 ////////////////////////////////
-// instead of inidivual fns. just have one parseAtRule fn? which deals with all? even media?
+// charset only allowed at first line/col. and it is only legal with " and not '
 pp.parseCharset = function() {
-  // charset only allowed at first line/col. and it is only legal with " and not '
   var node = {
     type: "CharsetRule",
     loc: this.createLoc(),
@@ -660,11 +660,11 @@ pp.parseDelim = function() {
 
 
 ////////////////////////////////
-pp.parseComment = function () {
+pp.parseComment = function (text) {
   return {
     type: "Comment",
     loc: this.createLoc(),
-    val: this.token.val
+    val: text ? text : this.token.val
   }
 }
 

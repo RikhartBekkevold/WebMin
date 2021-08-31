@@ -8,8 +8,8 @@ module.exports = function generateCode(ast, config) {
   var visitors = {
     Stylesheet: {
       enter(node, parent, idx, visitedSelectorPatterns, arr, parentArr) {
-        if (config.prependComment !== "")
-          add("/*" + config.prependComment + "*/\n")
+        // if (config.prependComment !== "")
+        //   add("/*" + config.prependComment + "*/\n")
       }
     },
     Comment: {

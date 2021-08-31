@@ -1,5 +1,5 @@
 {
-  "name": "SheetMin",
+  "name": "WebMin",
   "version": "0.1.0",
   "created": "9/7/2021",
   "description": "A combined html/css minifier",
@@ -15,6 +15,9 @@
     "minify"
   ],
   "author": "Rikhart Bekkevold",
-  "repository": "https://github.com/RikhartBekkevold/SheetMin",
-  "license": "MIT"
+  "repository": "https://github.com/RikhartBekkevold/WebMin",
+  "license": "MIT",
+  "dependencies": {
+    "source-map": "^0.7.3"
+  }
 }

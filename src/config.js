@@ -1,6 +1,6 @@
 module.exports = {
   removeEmptyAtRules: true,
-  prependComment: "",                   // COMMENT MUST BE ADDED AFTER CHARSET? currently it doenst - if added at start, it invalidated charset, but ignored unless old browser!
+  prependComment: "/*A test*/",                   // COMMENT MUST BE ADDED AFTER CHARSET? currently it doenst - if added at start, it invalidated charset, but ignored unless old browser! prepends a comment either at start of file, or after charset rule 
   removeSpace: true,
   removeComments: true,
   keepFirstComment: false,
@@ -24,7 +24,9 @@ module.exports = {
   removeDeprecatedAtRules: false,       // charset? viewport (need to declared in html)?, document? - keep to still support older browsers?
   mangleNames: false,
   mangleKeyframeNames: true,
-  createSourceMap: false,
+
+  createSourceMap: true,
+
   mangleWithSpecialChars: false,
   resolveFunctionCalcValue: false,
   mergeMediaQueries: false,

@@ -12,12 +12,14 @@ module.exports = function (input, noLoc, config) { // better than reading global
   var tokenizer =   new Tokenizer(input);
   var tokens    =   tokenizer.tokenize(config.removeComments, config.ignoreFirstComment)
 
-  // require("fs").writeFileSync("./test/out/tokens.json", JSON.stringify(tokens, null, 2), "utf8")
+  // this will alsp create this file when we call api fns - which we only wnat to return a string
+  require("fs").writeFileSync("./test/out/tokens.json", JSON.stringify(tokens, null, 2), "utf8")
 
   var parser    =   new Parser(tokens);
-  var ast       =   parser.parse()
+  var ast       =   parser.parse(config)
 
   if (noLoc) removeProp("loc", ast)
+  // && config.createSourceMap
 
   return ast
 }

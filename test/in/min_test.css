@@ -1,3 +1,10 @@
+ @charset "das";
+
+
+#app {margin: 2;}
+#app2 {margin: 2;}
+#app3 {margin: 2;}
+#app4 {margin: 2;}
 
 
 /* @counter-style thumbs {
@@ -84,9 +91,9 @@ or does before toplevel just check if charst? so it can do BEFORE parse? hence W
 } */
 
 
-#app3 [id|="home"   s] [id^="home" i] {
+/* #app3 [id|="home"   s] [id^="home" i] {
   animation-name: slide-in;
-}
+} */
 
 /* #app2 [id s] [id~="home"] [id$="home"] {
   animation-name: slide-in;
@@ -123,7 +130,7 @@ or does before toplevel just check if charst? so it can do BEFORE parse? hence W
 
 
 
-@page {
+/* @page {
  margin: 1cm;
 }
 
@@ -140,7 +147,7 @@ or does before toplevel just check if charst? so it can do BEFORE parse? hence W
 }
 
 @page :fidrst:firhdst:fiarst {
- margin: 2cm;
+ margin: 2cm; */
 }
 
 
@@ -164,9 +171,9 @@ or does before toplevel just check if charst? so it can do BEFORE parse? hence W
 
 
 
-@namespace URL("path-path");
+/* @namespace URL("path-path");
 @namespace svg url("path-path");
-@namespace prefix "path";
+@namespace prefix "path"; */
 
 /* @charset "das"; */
 
@@ -230,9 +237,9 @@ body {
 } */
 
 /* bug. fix. then try ":first:first {" */
-hda:first {
+/* hda:first {
   margin: 2px;
-}
+} */
 
 
 
@@ -251,21 +258,21 @@ hda:first {
 
 /* is vs isnt preds */
 
-shadow {}
+/* shadow {} */
 /* transform runs after. and comment wasnt kept. so it removes!
 if keep commnets, shadow is kept */
 
 
-*.daark.clasd > #namadad {
+/* pdding: calc(20 - 20); */
+/* *.daark.clasd > #namadad {
   pddadding: calc(20%, 30%, 50px, 29);
   path: url("dasd") "20px" url("dasd");
-  /* pdding: calc(20 - 20); */
   margin:20px 20px 10% 20px 10% 20;
 }
 
 .dadrk#namadad {
   padding:50px;
-}
+} */
 
 
 /* .class {
