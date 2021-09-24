@@ -6,7 +6,8 @@ files possible, with the option to disable, rather than enable them. -->
 <!-- An opiniated minifier that combined html and css minification, enabling most flags by default  -->
 
 <!-- HTML and CSS is linked. By minifying the in the same collective process the file size can be made smaller. -->
-
+<!-- // if make avail for browser, babelify the dist to not use findIndex? create dist build system
+// to build run npm install after clone/download -->
 <!-- #### Main reasons to use:
 - Smaller files than other minifiers, i.e. <a href>Uglify</a>, <a href>MinCSS</a> (even when minifying CSS standalone)
 - Combines two processes html and CSS minfication into one single process/command (with options to minify each individually) -->
@@ -16,6 +17,10 @@ files possible, with the option to disable, rather than enable them. -->
 // materlizd only css -->
 
 <!-- advertize the fact that all the boolean config variables creates high customizability? control over process? also add mixin pattern for it? -->
+
+
+
+
 
 <!-- For use in node project: -->
 <!-- ## Install
@@ -40,6 +45,7 @@ smaller/betetr -->
 # Api
 # can also be run as browser - host? -->
 
+<!-- written to make smallest files, everything done for that -->
 
 Simple use-case:
 
@@ -62,7 +68,8 @@ var minify = require('WebMin');
 
 // any config passed will override the default config value
 var min_css = minify("body {}", {
-  removeEmptySelectors: false, // will leave empty selectors untouched, normally these would be removed during minification       
+  // will leave empty selectors untouched, normally these would be removed during minification
+  removeEmptySelectors: false,
 })
 
 console.log(min_css); // -> "body{}"
@@ -81,7 +88,7 @@ minify("body {margin: 2px;}", {
   removeEmptySelectors: true,       // removes a selector if it has no declarations
   useShortestColorValue: true,      // determines if a hex value (#fff) or colorname (white) is shortest, and uses it
   replaceRgbWithHex: true,          // replaces rgb values (eg: rgb(2,3,5) or rgba(2,3,5,.5)) values with a shorter hex value instead (also inc compat?)
-  prependComment: "",               // a comment that will be added at the start of the minified CSS. Add /**/ and newlines self.
+  prependComment: "",               // a comment that will be added at the start of the minified CSS. e.g: "\n/* Am important comment */\n"
 })
 ```
 

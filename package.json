@@ -5,8 +5,9 @@
   "description": "A combined html/css minifier",
   "main": "index.js",
   "scripts": {
-    "test2": "npm run ./test/index.js",
-    "test": "node ./test/index.js"
+    "auto": "npm run ./test/index.js",
+    "test": "node ./test/index.js",
+    "genmap": "node ./exclude/generateSourceMapTest.js"
   },
   "keywords": [
     "html",

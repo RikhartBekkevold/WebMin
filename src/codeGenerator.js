@@ -7,10 +7,7 @@ module.exports = function generateCode(ast, config) {
 
   var visitors = {
     Stylesheet: {
-      enter(node, parent, idx, visitedSelectorPatterns, arr, parentArr) {
-        // if (config.prependComment !== "")
-        //   add("/*" + config.prependComment + "*/\n")
-      }
+      enter(node, parent, idx, visitedSelectorPatterns, arr, parentArr) {}
     },
     Comment: {
       enter(node, parent) {
@@ -237,10 +234,12 @@ module.exports = function generateCode(ast, config) {
           }
         }
 
+        var noSpace = !index || index === 0 || arr[index-1].type === "Percentage" || arr[index-1].type === "ListSeparator" || arr[index-1].type === "String"
         parent.type === "Function"
           ? add(parent.type === "Value" && parent.arguments.indexOf(node) !== 0  || parent.type === "MediaRule" || parent.type === "ImportRule" ? " " + node.name : node.name)
           // default:
-          : add(parent.type === "Value" && parent.parts.indexOf(node) !== 0  || parent.type === "MediaRule" || parent.type === "ImportRule" ? " " + node.name : node.name)
+          : add(!noSpace || parent.type === "MediaRule" || parent.type === "ImportRule" ? " " + node.name : node.name)
+          // parent.type === "Value" && parent.parts.indexOf(node) !== 0
           // do we need "url"print space? shl says so. but not sure.
       }
     },

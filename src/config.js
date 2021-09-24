@@ -1,18 +1,14 @@
 module.exports = {
   removeEmptyAtRules: true,
-  prependComment: "/*A test*/",                   // COMMENT MUST BE ADDED AFTER CHARSET? currently it doenst - if added at start, it invalidated charset, but ignored unless old browser! prepends a comment either at start of file, or after charset rule 
+  prependComment: "",                   // prepends a comment either at start of file, or after charset rule
   removeSpace: true,
   removeComments: true,
   keepFirstComment: false,
   skipTrailingZero: true,
   roundColorValuesHex: false,
-  mergeDupliSelectors: true,
-  mergeDuplicateDeclarations: true,
-  removeEmptySelectors: true,           // removes selectors that contain no declarations (or comments)
-  useShorthandValue: true,
+
   mergeVariations: true,
   removeExcessUnits: true,
-  useSmallerDeclarations: true,         // useShorthandProperty: true,
   shortenUnsafeHex: false,              // shorten hex values by loss of accuracy
   replaceRgbWithHex: true,              // rgb(a)(20,30,3) to #000fff
   useShortestColorValue: true,          // converts a color to the shortest of hex or colorname
@@ -22,12 +18,28 @@ module.exports = {
   removeExcessImportant: false,
   removeCharset: false,
   removeDeprecatedAtRules: false,       // charset? viewport (need to declared in html)?, document? - keep to still support older browsers?
+
+  /* attempts to shorten a shorthand property (e.g. border, margin) by either re-arranging the values to require less divisional space (border:#fff solid; -> border:solid#fff;), or by removing unecessary values (margin: 20px 20px;  ->  margin: 20px;) */
+  shortenShortHand: true,               // optimizeShorthand
+
+  // removeOverridenLonghands: true, // longhand, or dupli - include dupli here?
+  // mergeDuplicateDeclarations: true,
+  // becasue duplicate or similar/shorthand version overrides
+  removeOverridenDeclarations: true, // combine them both to this prop?
+
+  mergeDupliSelectors: true,
+  removeEmptySelectors: true,           // removes selectors that contain no declarations (or comments)
+
+
+  // replace longhand declarations with shorthand
+  longhandToShorthand: true,            // useSmallerDeclarations: true, useShorthandValue - background-color -> background
+
   mangleNames: false,
   mangleKeyframeNames: true,
+  mangleWithSpecialChars: false,
 
   createSourceMap: true,
 
-  mangleWithSpecialChars: false,
   resolveFunctionCalcValue: false,
   mergeMediaQueries: false,
   pathToIdOrClass: false

@@ -64,7 +64,7 @@ exports.hasHigherPrecedence = function(node1, node2) {
   if (hasHigherSpec(node1, node2) === 0) return true
 }
 
-
+// all same?
 exports.includesAll = function(arr, searchArr, prop) {
   for (var obj of arr)  // includesAll(visitPattern.styleRule.rules.statements, parent.rules.statements, "property")
     if (!searchArr.some(el => propOverrides(obj, el))) // obj[prop] === el[prop] && obj.value.parts.length === el.value.parts.length && (el.isImportant || !obj.isImportant)
@@ -241,3 +241,13 @@ exports.createNameGenerator = createNameGenerator
 exports.mangleName = mangleName
 exports.hasMangledNameBefore = hasMangledNameBefore
 exports.propOverrides = propOverrides
+
+
+// node.values.splice(node[node.values.length-1])  splice / remove by value or pred
+// a gets bs pos, and b gets a
+function switchPos(arr, i, j) { // index and value (first ref, indexOf)
+  var temp = arr[i]
+  arr[i] = arr[j]
+  arr[j] = temp
+}
+exports.switchPos = switchPos

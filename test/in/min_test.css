@@ -1,10 +1,80 @@
- @charset "das";
+#app {
+  margin: 30px;
+  margin-top: 60px;
+}
 
 
-#app {margin: 2;}
-#app2 {margin: 2;}
-#app3 {margin: 2;}
-#app4 {margin: 2;}
+
+/* #app {
+  margin: 60px 30px 30px 30px;
+} */
+
+/* should check if smaller after
+if margin alone, we dont want to expand? it is expanded down but... */
+
+
+
+/* #app3 {
+  margin-top: 20px; cant apply this to below, since below overrides
+  margin: 20px;
+  margin-left: 20px;
+}
+
+#app3 {
+  margin-top: 30px; we can apply these to the shorthnad in ways taht make sense?
+  use the ones before to change shorthand. just ingore after. only before matter?
+  margin: 20px; applied to all - so altering an existing prop
+  if we move margin below thouhg.. with margin left in the shorthand - since margin isnt last
+  margin-left: 40px; but left overrides - but is same value
+  we create ALL into one.
+  margin IS overriding margin top! so we ignore margin top!? since it set new margin top
+  margin: 20px 40px 20px 20px; - left shorten shorthand handle? order or resuable fn?
+  since 0 will be applied..
+
+  change margin, which also depends on current values, and the longhands AFTER
+  expand shorthand to max (based on itself|its own values? since before dont matter)? the version css would apply to longhand? THEN we replace the sh value with longhands value AFTER sh, based on order map then let shorten shorthand shorten back?
+
+  if no margin: create at end using all shorthands, fill in missing, no? if margin exists its so much easier becasuse then we know it overrides
+  but if dont exist we can be sure of cascading, so we cant change defaults?
+
+
+  hasMargin
+    if has - then can use values AFTER only. regardless of how many longhands exists or not? since we default has be set/overriden, so can use margin itself
+      loop to get ALL after that point (so indexOfMargin instead? pred(prop))
+      a
+    else if hasnt
+      b - limited, can ONLY if all longhand exists? do what we already do
+
+
+  add at end of stylerule or?
+  is margin with four values shorter than margin left and margin? when also have a top, then sure, but
+}
+everything|any longhand BEFORE margin can be ignored since the default will be used instead of it, which is 0??
+
+
+
+loop hasMargin = true if we encoutner it, check for each prop?
+
+#app4 {
+  margin-left: 20px;
+  margin: 20px;
+  margin-bottom: 20px;
+}
+
+#app5 {
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+#app5 {
+  margin: 20px 30px;
+}
+
+margin might be applied somewhere else too, before (prev sel that target same obj) this will be overriden
+if we set a margin and dont know what the value is for all - which we do if all 4 is present, or if two? no!
+but if margin is ALREADY set it will override. */
+
+
 
 
 /* @counter-style thumbs {
