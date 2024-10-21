@@ -116,7 +116,7 @@ Additionally you can print extra info:
 <code>--help</code>
   Lists all options.
 
-# Notes on name mangling
+<!-- # Notes on name mangling -->
 <!-- // Mangling names depends on values outside CSS.
 // There are two options. Mangle e.g. html and pass the values to be used in the CSS process.
 // Or let CSS minifier mangle and return a map of the old and new names by setting the various options mangle
