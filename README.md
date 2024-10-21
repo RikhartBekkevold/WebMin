@@ -1,14 +1,16 @@
 # WebMin
-A CSS minifier that enables most flags by default, in order to achieve the smallest
-files possible, with the option to disable, rather than enable them. Can be used as CLI or API.
+<!-- A CSS minifier that enables most flags by default, in order to achieve the smallest
+files possible, with the option to disable, rather than enable them. Can be used as CLI or API. -->
 
-The files passed to cli or api is assumed to represent all relevant CSS files. If multiple files passed they will be concatenated.
+A CSS minifier. Can be used as CLI or API.
+
+<!-- The files passed to cli or api is assumed to represent all relevant CSS files. If multiple files passed they will be concatenated.
 The order of passing is the order of concatenation (the second is appended to the first etc). The output will be a single
 CSS file in the output folder specified (or working directory if none specified), unless the option split is set.. the indivdual.. parse?
-minifySeparately
+minifySeparately -->
 
-For api in addition to filepath, one can also pass a string.
-If name of directory passed, order can be random. So read the directory files, and order the files before before calling.
+<!-- For api in addition to filepath, one can also pass a string.
+If name of directory passed, order can be random. So read the directory files, and order the files before before calling. -->
 
 <!-- When to use
 websiute version
@@ -17,8 +19,8 @@ cli
 standalone in lib/api, as api -->
 <!-- output can be wrong if css is wrong. use a linter first if need garantee correct output. -->
 
-# Install
-Download repo.
+<!-- # Install
+Download repo. -->
 
 # API
 Pass a string or filepaths.
@@ -119,7 +121,7 @@ Additionally you can print extra info:
 // There are two options. Mangle e.g. html and pass the values to be used in the CSS process.
 // Or let CSS minifier mangle and return a map of the old and new names by setting the various options mangle
 // properties. -->
-## What is mangling
+<!-- ## What is mangling
 The minifier can mangle names, meaning change the name to a shorter version. E.g.
 
 ```stylesheet
@@ -133,28 +135,28 @@ Name mangling is disabled by default. Mangling is not safe with CSS as input alo
 
 You can enable name mangling with mangleNames set to true. Together with the minified CSS a map of the old and new names of selector will then be returned.
 
-If you would rather pass the names to the minifier so it can use them when mangling, e.g. if you have already mangled the names yourself in HTML/JS. You can tell it to do so by assigning an object to config.useNames, on this form:
+If you would rather pass the names to the minifier so it can use them when mangling, e.g. if you have already mangled the names yourself in HTML/JS. You can tell it to do so by assigning an object to config.useNames, on this form: -->
 
-```js
+<!-- ```js
 config.useNames = {
   selector|variable|keyframe|namespaces: {
     oldname: newname,
     oldname: newname
   }
 }
-```
+``` -->
 
-If flag set. The minfier can mangle names to a shorter version (.class-> .a). This is disabled by default. The selector names are referenced in both HTML and CSS and it is therefore only safe to enable this feature (set mangleNames to true), if you as the caller, know that it is safe.  
+<!-- If flag set. The minfier can mangle names to a shorter version (.class-> .a). This is disabled by default. The selector names are referenced in both HTML and CSS and it is therefore only safe to enable this feature (set mangleNames to true), if you as the caller, know that it is safe.  
 
-Setting this config option to true will also return a map with the old and new names. This can then be used to apply the new names in CSS and JS.
+Setting this config option to true will also return a map with the old and new names. This can then be used to apply the new names in CSS and JS. -->
 
-## Notes on variable resolution
-In addition to mangling, variables names can be resolved to their values instead. If resolveVariables is set to true, it will take precedence over mangling. By default this is disabled because variables can be declared outside of CSS in JS. The JS variable have higher priority than the CSS declared variable. This means that the minifier does not know if its safe to resolve a value. Enable this flag only if you know that this is not the case and that all variables is declared in the CSS input you provide.     
+<!-- ## Notes on variable resolution
+In addition to mangling, variables names can be resolved to their values instead. If resolveVariables is set to true, it will take precedence over mangling. By default this is disabled because variables can be declared outside of CSS in JS. The JS variable have higher priority than the CSS declared variable. This means that the minifier does not know if its safe to resolve a value. Enable this flag only if you know that this is not the case and that all variables is declared in the CSS input you provide.      -->
 
 ## Licence
 <a href="https://github.com/RikhartBekkevold/WebMin/blob/main/LICENSE.md">MIT</a>
 
-# TODO:
+<!-- # TODO:
 Cookbook
 HTML test frameworks
-Examples
+Examples -->
