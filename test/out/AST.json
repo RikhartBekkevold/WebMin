@@ -2,45 +2,268 @@
   "type": "Stylesheet",
   "rules": [
     {
-      "type": "StyleRule",
-      "loc": {
-        "start": {
-          "line": 1,
-          "col": 0
-        },
-        "end": {
-          "line": 7,
-          "col": 1
-        }
+      "type": "KeyframesRule",
+      "name": {
+        "type": "Identifier",
+        "name": "slidein"
       },
+      "arguments": [
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "from"
+                }
+              ],
+              "specificity": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "declarations": [
+              {
+                "type": "Declaration",
+                "important": false,
+                "property": "transform",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Function",
+                      "name": "translateX",
+                      "arguments": [
+                        {
+                          "type": "Percentage",
+                          "val": "0",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "to"
+                }
+              ],
+              "specificity": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "declarations": [
+              {
+                "type": "Declaration",
+                "important": false,
+                "property": "transform",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Function",
+                      "name": "translateX",
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "name": "auto"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "KeyframesRule",
+      "name": {
+        "type": "Identifier",
+        "name": "slidein2"
+      },
+      "arguments": [
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "from"
+                }
+              ],
+              "specificity": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "declarations": [
+              {
+                "type": "Declaration",
+                "important": false,
+                "property": "transform",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Function",
+                      "name": "translateX",
+                      "arguments": [
+                        {
+                          "type": "Percentage",
+                          "val": "0",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "from"
+                }
+              ],
+              "specificity": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "declarations": [
+              {
+                "type": "Declaration",
+                "important": false,
+                "property": "transform",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Function",
+                      "name": "translateX",
+                      "arguments": [
+                        {
+                          "type": "Percentage",
+                          "val": "0",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "StyleRule",
       "selectors": [
         {
           "type": "SelectorPattern",
-          "loc": {
-            "start": {
-              "line": 1,
-              "col": 0
-            },
-            "end": {
-              "line": 1,
-              "col": 6
-            }
-          },
           "selectors": [
             {
               "type": "IdSelector",
-              "loc": {
-                "start": {
-                  "line": 1,
-                  "col": 0
-                },
-                "end": {
-                  "line": 1,
-                  "col": 4
-                }
-              },
-              "name": "app",
-              "len": 4
+              "name": "app"
             }
           ],
           "specificity": [
@@ -52,107 +275,17 @@
       ],
       "rules": {
         "type": "Block",
-        "loc": {
-          "start": {
-            "line": 1,
-            "col": 5
-          },
-          "end": {
-            "line": 7,
-            "col": 1
-          }
-        },
-        "statements": [
+        "declarations": [
           {
-            "type": "Statement",
+            "type": "Declaration",
             "important": false,
-            "property": "margin",
-            "loc": {
-              "start": {
-                "line": 3,
-                "col": 2
-              },
-              "end": {
-                "line": 3,
-                "col": 15
-              }
-            },
+            "property": "animation-name",
             "value": {
               "type": "Value",
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "col": 9
-                },
-                "end": {
-                  "line": 3,
-                  "col": 15
-                }
-              },
               "parts": [
                 {
-                  "type": "Dimension",
-                  "loc": {
-                    "start": {
-                      "line": 3,
-                      "col": 10
-                    },
-                    "end": {
-                      "line": 3,
-                      "col": 12
-                    }
-                  },
-                  "val": "30",
-                  "unit": "px",
-                  "isInt": true,
-                  "isEpsilon": false
-                }
-              ]
-            }
-          },
-          {
-            "type": "Statement",
-            "important": false,
-            "property": "margin-top",
-            "loc": {
-              "start": {
-                "line": 5,
-                "col": 2
-              },
-              "end": {
-                "line": 5,
-                "col": 19
-              }
-            },
-            "value": {
-              "type": "Value",
-              "loc": {
-                "start": {
-                  "line": 5,
-                  "col": 13
-                },
-                "end": {
-                  "line": 5,
-                  "col": 19
-                }
-              },
-              "parts": [
-                {
-                  "type": "Dimension",
-                  "loc": {
-                    "start": {
-                      "line": 5,
-                      "col": 14
-                    },
-                    "end": {
-                      "line": 5,
-                      "col": 16
-                    }
-                  },
-                  "val": "60",
-                  "unit": "px",
-                  "isInt": true,
-                  "isEpsilon": false
+                  "type": "Identifier",
+                  "name": "slidein"
                 }
               ]
             }

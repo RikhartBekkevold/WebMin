@@ -1,24 +1,33 @@
 {
   "name": "WebMin",
+  "bin": {
+    "webmin": "./bin/cli.js"
+  },
   "version": "0.1.0",
   "created": "9/7/2021",
-  "description": "A combined html/css minifier",
+  "description": "A css minifier",
   "main": "index.js",
   "scripts": {
+    "min": "webmin",
     "auto": "npm run ./test/index.js",
-    "test": "node ./test/index.js",
-    "genmap": "node ./exclude/generateSourceMapTest.js"
+    "testall": "node ./test/index.js all.css",
+    "test": "node ./test/index.js current.css",
+    "testapi": "node ./test/api.js",
+    "compare": "echo Minifying all.css... && npm run testall && Launching minified/non-minified as html for comparison && start test/html/view_min.html && start test/html/view_non_min.html",
+    "testspec": "echo Spec test, alter html first && start test/html/spec.html"
   },
   "keywords": [
-    "html",
     "css",
     "minifier",
-    "minify"
+    "minify",
+    "JS"
   ],
   "author": "Rikhart Bekkevold",
   "repository": "https://github.com/RikhartBekkevold/WebMin",
   "license": "MIT",
-  "dependencies": {
-    "source-map": "^0.7.3"
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "open": "^10.1.0"
   }
 }

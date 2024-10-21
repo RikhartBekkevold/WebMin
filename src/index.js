@@ -1,10 +1,14 @@
-const parse  = require('./css-parser/index.js')
-const transformAST = require('./transform.js')
-const generateCode = require('./codeGenerator.js')
+const parse    = require('./parser/index.js')
+const optimize = require('./optimizer/optimize.js')
+const print    = require('./codegen/codeGenerator.js')
 
-module.exports = function compile(css, config) { 
-  var ast     =   parse(css, false, config)
-  var modAst  =   transformAST(ast, config)
-  var code    =   generateCode(modAst, config)
-  return code
+module.exports = function compile(css, config) {
+  const ast  = parse(css, config)
+  const opti = optimize(ast, config)
+  const min  = print(opti.ast, config)
+
+  return {
+    css: min,
+    map: opti.map
+  }
 }

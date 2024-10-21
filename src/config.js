@@ -1,46 +1,45 @@
-module.exports = {
-  removeEmptyAtRules: true,
-  prependComment: "",                   // prepends a comment either at start of file, or after charset rule
-  removeSpace: true,
+module.exports.internalParserConfig = {
   removeComments: true,
+  removeSpace: false,
+  addSpecificity: false,
+  addLocationData: false
+}
+
+// all options exposed to user of minifier
+module.exports.defaultConfig = {
+  // prepended either at start of file, or after charset rule. need to include "/**/". prepends always regardless of truthfulness of other comment config
+  prependComment: "",
   keepFirstComment: false,
-  skipTrailingZero: true,
-  roundColorValuesHex: false,
-
-  mergeVariations: true,
-  removeExcessUnits: true,
-  shortenUnsafeHex: false,              // shorten hex values by loss of accuracy
-  replaceRgbWithHex: true,              // rgb(a)(20,30,3) to #000fff
-  useShortestColorValue: true,          // converts a color to the shortest of hex or colorname
-  replaceColorNameWithHex: true,
-  keepImportantInKeyframes: false,      // by default we remove any "!important" appearing in keyframes, since they are ignored by the browser
-  removeRedundantImportant: true,
-  removeExcessImportant: false,
   removeCharset: false,
-  removeDeprecatedAtRules: false,       // charset? viewport (need to declared in html)?, document? - keep to still support older browsers?
+  keepImportantInKeyframes: false,
+  removeEmptyAtRules: true,
+  // stylerules containing comments are kept - removes if in media/at rules?
+  removeEmptyStyleRules: true,
+  // if two identical stylerules, removes the last - what if many?
+  mergeIdenticalStyleRules: true, // removeLastIdenticalStyleRule
+  // charset rule ignored in modern css implementations. we remove misplaced always since invalid.
 
-  /* attempts to shorten a shorthand property (e.g. border, margin) by either re-arranging the values to require less divisional space (border:#fff solid; -> border:solid#fff;), or by removing unecessary values (margin: 20px 20px;  ->  margin: 20px;) */
-  shortenShortHand: true,               // optimizeShorthand
-
-  // removeOverridenLonghands: true, // longhand, or dupli - include dupli here?
-  // mergeDuplicateDeclarations: true,
-  // becasue duplicate or similar/shorthand version overrides
-  removeOverridenDeclarations: true, // combine them both to this prop?
-
-  mergeDupliSelectors: true,
-  removeEmptySelectors: true,           // removes selectors that contain no declarations (or comments)
-
-
-  // replace longhand declarations with shorthand
-  longhandToShorthand: true,            // useSmallerDeclarations: true, useShorthandValue - background-color -> background
-
-  mangleNames: false,
+  // attempts to shorten a shorthand property (e.g. border, margin) by either re-arranging the values to require less divisional space (border:#fff solid; -> border:solid#fff;), or by removing unecessary values (margin: 20px 20px;  ->  margin: 20px;)
+  optimizeShorthandProperties: true,
+  removeOverridenDeclarations: true,
+  // replace longhand declarations (margin-left) with shorthand wherever possible (margin)
+  // only allow if we know JS does not reference any of the longhand props - only applicable when using CSSOM to ref margin?
+  // style rule dont count..
+  longhandToShorthand: false,
+  // resolves only those expressions that can be determined by CSS alone
+  resolveExpressions: true,
+  skipTrailingZero: true,
+  removeExcessUnits: true,       // removes px/% etc when val 0
+  useShortestColorValue: true,
+  mangleSelectorNames: false,    // id and class only
   mangleKeyframeNames: true,
-  mangleWithSpecialChars: false,
-
-  createSourceMap: true,
-
-  resolveFunctionCalcValue: false,
-  mergeMediaQueries: false,
-  pathToIdOrClass: false
+  mangleNamespaceNames: false,   // mangleNamespacePrefixes
+  mangleVariables: false,
+  resolveVariables: false,       // aka custom properties
+  preMangledNames: {
+    keyframes:  {},
+    selectors:  {},
+    variables:  {},
+    namespaces: {}
+  }
 }

@@ -1,7 +1,11 @@
-module.exports = function minify(css, userConfig) {
-  var config = require("./src/config.js")
-  Object.assign(config, userConfig)
+const { defaultConfig, internalParserConfig } = require("./src/config.js")
+const compile = require('./src/index.js')
 
-  const compile = require('./src/index.js')
+module.exports = function minify(css, userConfig) {
+  const config = Object.assign(
+    defaultConfig,
+    userConfig,
+    internalParserConfig
+  )
   return compile(css, config)
 }

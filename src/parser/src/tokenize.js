@@ -1,33 +1,48 @@
+const tokens = require('./tokens.js');
+
 exports.Tokenizer = class Tokenizer {
-  constructor(input) {
+  constructor(input, config) {
+    this.config = config
     this.input = input
     this.line = 1
     this.pos = 0
     this.tokens = []
     this.curr = 0
     this.char = this.input[0]
+    this.firstComment = true
   }
 
 
-  tokenize(removeComments, ignoreFirstComment) {
+  tokenize() {
     while(this.curr < this.input.length) {
 
       if (this.isWhitespace()) {
-        var pos = this.pos, line = this.line
-        let val = ""
-        while (this.isWhitespace()) {
-          val += this.char
-          this.move()
-          this.next()
-        }
-        this.createToken("whitespace", val, pos)
+        this.move()
+        this.next()
+        continue
+
+        // if (this.preserveWhitespace) {
+        // CALLED this.config.removeSpace now?
+          var pos = this.pos, line = this.line
+          let val = ""
+          while (this.isWhitespace()) {
+            val += this.char
+            this.move()
+            this.next()
+          }
+          this.createToken(tokens.whitespace, val, pos)
+        // }
+        // else {
+        //   this.move()
+        //   this.next()
+        // }
         continue
       }
 
 
       if (this.isAsterisk()) {
         this.move()
-        this.createToken("asterisk", this.char, this.pos)
+        this.createToken(tokens.asterisk, this.char, this.pos)
         this.next()
         continue
       }
@@ -43,8 +58,13 @@ exports.Tokenizer = class Tokenizer {
           this.move(), this.next()
           this.isEnd(line, pos)
         }
-        let token = this.createToken("comment", "/*"+val+"*/", pos)
-        token.line = line
+
+        if ((this.config.keepFirstComment && this.firstComment) || !this.config.removeComments) {
+          let token = this.createToken(tokens.comment, "/*"+val+"*/", pos)
+          token.line = line
+          this.firstComment = false
+        }
+
         this.move(2)
         this.next(2)
         continue
@@ -92,32 +112,33 @@ exports.Tokenizer = class Tokenizer {
           }
         }
 
-        var token = this.createToken("num", num, start)
+        var token = this.createToken(tokens.number, num, start)
         token.isEpsilon = isEpsilon
         token.isInt = isInt
 
         if (this.isIdentStart()) {  // || this.char === "-" && this.peek() === "-" || this.char === "-" && this.isIdentStart(this.peek()) {
           let val = ""
+
+          // includes numbers. diff predicate to tokenize 20px20px20px as one value
           while (this.isIdent()) {
             val += this.char
             this.next(), this.move()
           }
-          token.type = "Dimension"
+          token.type = tokens.dimension
           token.unit = val
         }
         else if (this.isPercent()) {
-          token.type = "Percentage" // lowercase?
+          token.type = tokens.percentage
           this.next(), this.move()
         }
         continue
       }
 
 
-      if (this.isOperator() && this.isWhitespace(this.peek())) { // we cant add space after for this one. or we can..? dotn wnt space anyway thouhg
-        // how we avoid adding space after? ned to make it belong to num?
+      if (this.isOperator() && this.isWhitespace(this.peek())) {
         var start = this.pos
         this.move()
-        this.createToken("operator", this.char, start) // if can pass callback to move, then we can exe this, since it calls it between next and move
+        this.createToken(tokens.operator, this.char, start)
         this.next()
         continue
       }
@@ -126,10 +147,9 @@ exports.Tokenizer = class Tokenizer {
       if (this.isAttributeOperator()) {
         var start = this.pos
         this.move()
-        var token = this.createToken("attributeoperator", this.char, start)
+        var token = this.createToken(tokens.attributeOperator, this.char, start)
         this.next()
 
-        // this.char === "="
         if (this.isAttributeOperator()) {
           token.val += this.char
           this.move(), this.next()
@@ -141,7 +161,7 @@ exports.Tokenizer = class Tokenizer {
       if (this.isPunctation()) {
         var start = this.pos
         this.move()
-        var token = this.createToken("punctation", this.char, start)
+        var token = this.createToken(tokens.punctation, this.char, start)
         this.next()
         if (this.char === ":") {
           token.val += ":"
@@ -151,8 +171,7 @@ exports.Tokenizer = class Tokenizer {
       }
 
 
-      // excluded matchs that has digits after - why "-" is legal class name unless escaped
-      if (this.isDot() && this.isIdentStart(true)) { // allows - as long as not num after. and disallows nums.
+      if (this.isDot() && this.isIdentStart(true)) {
         let val = "", start = this.pos
         this.move()
         this.next()
@@ -162,7 +181,7 @@ exports.Tokenizer = class Tokenizer {
           this.move()
           this.next()
         }
-        var token = this.createToken("class", val, start)
+        var token = this.createToken(tokens.class, val, start)
         continue
       }
 
@@ -171,11 +190,11 @@ exports.Tokenizer = class Tokenizer {
         let name = "", start = this.pos
         this.next()
         this.move()
-        while (this.isIdent()) { // we assuem ident and no space - check if next is digit? then parse as hex?
+        while (this.isIdent()) {
           name += this.char
           this.next(), this.move()
         }
-        this.createToken("id", name, start) // if id in the parseValues fn, we assume hex/color - we didnt validate valid hex thohg
+        this.createToken(tokens.id, name, start)
         continue
       }
 
@@ -183,7 +202,7 @@ exports.Tokenizer = class Tokenizer {
       if (this.isCombinator()) {
         var start = this.pos
         this.move()
-        this.createToken("combinator", this.char, start)
+        this.createToken(tokens.combinator, this.char, start)
         this.next()
         continue
       }
@@ -195,23 +214,21 @@ exports.Tokenizer = class Tokenizer {
         let val = ""
         this.move()
         this.next()
-        while (!this.isStringEnd(delimiter)) { //  || undefined here will result in while edning, and string being the last token
+        while (!this.isStringEnd(delimiter)) {
           val += this.char
           this.move(), this.next()
-          this.isEnd(line, start) // because the string can be not closed! so need to check for it
-          // make is end part of while check. then it will just end, and not throw thouhg. if use = undefined
+          this.isEnd(line, start) // assertEnd
         }
         this.move()
         this.next()
-        // flag or two different tokens
-        let token = this.createToken("string", val, start)
-        token.delimiter = delimiter // JS auto added slash for us! the = operator?
-        token.line = line // override token.line prop. it is set to end line when token created. we switch to saved start line.
-        // this values are implicit. closure better?
+
+        let token = this.createToken(tokens.string, val, start)
+        token.delimiter = delimiter
+        token.line = line
+
         continue
       }
-      // closure, iffy better since dont need to create instance. static call tokenize? then how we set variables init?
-      // use = assignment for class? to create one immedia?
+
 
       if (this.isAtRule()) {
         let type = "", start = this.pos
@@ -221,27 +238,58 @@ exports.Tokenizer = class Tokenizer {
           type += this.char
           this.move(), this.next()
         }
-        this.createToken("@", type, start)
+        this.createToken(tokens.atRule, type, start)
         continue
       }
 
+
       if (this.isIdentStart()) { // || this.char === "-" && this.peek() === "-" || this.char === "-" && this.isIdentStart(this.peek()) ) { // exclude *
-        var val = "";
+        var val = ""
         var start = this.pos
 
         while (this.isIdent()) { // easy fix to parse as one, so printed witout space
-          val += this.char
+          val += this.char // group concat and move?
           this.move()
           this.next()
         }
 
-        this.createToken("ident", val, start)
+        // ws can be inside (, so dont know if " or ' is first char
+        // assume url and ( has no space. shl thinks wrong. what about spec?
+        // shl indicates url () wrong, so assume no space
+        if (this.isQuotelessUrl(val)) {
+          var content = ""
+          let start = this.pos
+          this.move()
+          this.next()
+
+          // if missing ) loop is endless (like str), untill gets to end - try it
+          // just breaks loop on this.char == undefined? - add isEnd assert?
+          // does create token. but move/next after loop fails?
+          while (this.char !== ")") {
+            content += this.char
+            this.move()
+            this.next()
+          }
+
+          // import media
+          this.move()
+          this.next()
+
+          let token = this.createToken(tokens.url, content, start)
+          token.name = val
+
+          continue
+        }
+
+        this.createToken(tokens.ident, val, start)
         continue
       }
 
-
+      // if not whitespace && !config.keepWhitespace, parseWhitespace, preserveWhitespace
+      // dont add delim for whitespace
+      // have it go inside so continue..
       this.move() // WRONG? seems wrong to move
-      this.createToken("delim", this.char, this.pos)
+      this.createToken(tokens.unknown, this.char, this.pos)
       this.next()
     }
 
@@ -256,24 +304,20 @@ exports.Tokenizer = class Tokenizer {
     return epsilon
   }
 
-
-  // needed for strings and tokens. EOF
-  // replace with undefined in while, so it doesnt err?
   isEnd(line, pos) {
-    // an also do: if undefined? both ending program, or loop with entire as string is ok. becaeu we dont care what fault happens.
-    if (this.curr >= this.input.length) { // change so it know which one it is. unclosed "token"?
+    if (this.curr >= this.input.length) {
       throw new SyntaxError("Unexpected end of input. Unclosed comment or string starting at line " + line + ":" + pos);
     }
-    // undefined check?
   }
 
   isStringEnd(type) {
-    return this.char === type && this.lookback() !== "\\" // same for commnets? */ must be escaped? both?
-    // " '' " will not create a new substring. each char is indivual
+    return this.char === type && this.lookback() !== "\\"
   }
 
-  isStringStart() {
-    return this.char === '"' || this.char === "'"
+  isStringStart(char) {
+    return char ?
+      char === '"' || char === "'" :
+      this.char === '"' || this.char === "'"
   }
 
   isID() {
@@ -281,10 +325,10 @@ exports.Tokenizer = class Tokenizer {
   }
 
   isDot(char) {
-    return char ? char === "." : this.char === "." // dot based on sub paths --- parse subpaths too. context.
+    return char ? char === "." : this.char === "."
   }
 
-  isIdentStart(next) { // n makes more sense that char? unless we pass both
+  isIdentStart(next) {
     return next
         ? /[a-zA-Z_]|\-(?!\d)|[^\x00-\x7F]/.test(this.peek() + this.peek(2)) || (this.peek() === "-" && this.peek(2) === "-") // || escape
         : /[a-zA-Z_]|\-(?!\d)|[^\x00-\x7F]/.test(this.char + this.peek()) || (this.char === "-" && this.peek() === "-")
@@ -300,8 +344,6 @@ exports.Tokenizer = class Tokenizer {
       (this.isDot() && this.isDigit(this.peek()))
   }
 
-  // if we have a char and it has diff meaning in diff context. ALWYAS just parse it as same char, with same generic name
-  // and decide in parse its actual meaning. parse = paths = context = meaning.
   isEpsilon() {
     return (this.char === "e" || this.char === "E") && (this.isSign(this.peek()) || this.isDigit(this.peek()))
   }
@@ -310,9 +352,8 @@ exports.Tokenizer = class Tokenizer {
     return "+-".includes(char ? char : this.char)
   }
 
-  isDigit(char) { // ,n?
+  isDigit(char) {
     return /[0-9]/.test(char ? char : this.char)
-    // return /[0-9]/.test(next ? this.peek() : this.char)
   }
 
   isPercent() {
@@ -320,29 +361,18 @@ exports.Tokenizer = class Tokenizer {
   }
 
   isNewline() {
-    // includes just as good? includes = loop
     return this.char === "\n" ||
-    this.char === "\r\n" ||
     this.char === "\r" ||
     this.char === "\f"
   }
 
-  // "\r\n" - "\n\r" both used?
   isWhitespace(char) {
-    return /\s/.test(char ? char : this.char) // || this.isNewline() // [\r\n\t\f\v ]
+    return /\s/.test(char ? char : this.char)
   }
 
-  // isAttributeOperator() {
-  //   return (
-  //     ((this.char === "$" ||
-  //     this.char === "~" ||
-  //     this.char === "*" ||
-  //     this.char === "^" ||
-  //     this.char === "|" ||)
-  //     && this.peek() === "=") ||
-  //     this.char === "="
-  //   )
-  // }
+  isQuotelessUrl(val) {
+    return val.toLowerCase() === "url" && this.char === "(" && !this.isStringStart(this.peekFirstNonWhitespaceChar())
+  }
 
   isAttributeOperator() {
     return (
@@ -354,20 +384,19 @@ exports.Tokenizer = class Tokenizer {
       this.char === "="
     )
   }
-  // just parse these all as own char, delims, and handle in parse?
+
   isAsterisk() {
-    return this.char === "*" && this.peek() !== "=" // the *= combo constitutes a attribute operator instead
+    // the *= combo constitutes a attribute operator instead
+    return this.char === "*" && this.peek() !== "="
+  }
+
+  // - gets picked up by number before isOperator (depending on order in tokenize)
+  isOperator() {
+    return "+-/".indexOf(this.char) !== -1
   }
 
   isAtRule() {
     return this.char === "@"
-  }
-
-  // after ident - so uni will be ident
-  // - as part of num is before operator, so never becoems operator
-  isOperator() {
-    return "+-/".indexOf(this.char) !== -1
-    // return "+-/".includes(this.char)
   }
 
   isPunctation(char) {
@@ -380,16 +409,17 @@ exports.Tokenizer = class Tokenizer {
       this.char === ")"  ||
       this.char === ";"  ||
       this.char === ":"  ||
-      this.char === "!"
+      this.char === "!"  ||
+      this.char === "&"
     )
   }
 
   isCombinator() {
     return (
-      this.char === "," ||
+      this.char === "," || // always separated in parse into ListSeperator.. for all contexts?
       this.char === ">" ||
       this.char === "+" ||
-      this.char === "~"
+      this.char === "~" // when used two places, always picked up by first if. unless sub if.
     )
   }
 
@@ -400,7 +430,6 @@ exports.Tokenizer = class Tokenizer {
 
   isCommentEnd() {
     return this.char === "*" && this.peek() === "/"
-    // && this.char === undefined
   }
 
   lookback(n) {
@@ -409,51 +438,40 @@ exports.Tokenizer = class Tokenizer {
       this.input[this.curr - 1]
   }
 
-  // peek that skips certain chars/tokens, eg. WS - peekNextRelevantToken/char
-  // n = peek a certain char a head, not, all until n
-  // peek return n char ahead or peek return all n chars ahead?
   peek(n) {
     return n ?
       this.input[this.curr + n] :
       this.input[this.curr + 1]
   }
 
-  // moves down if char is \n
-  // if move many steps, does it still manage to recoqnize its gone down a line?
+  // getfirst
+  // firstnonwsisStrStart
+  // causes problems for location depending on preserveWhitespace? no since part of a value? ws is always non-value.
+  peekFirstNonWhitespaceChar() {
+    var n = 1
+    var char = this.input[this.curr + n]
+    while(this.isWhitespace(char))
+      char = this.input[this.curr + ++n]
+    return this.input[this.curr + n]
+  }
+
   next(n, move) {
-    // move && this.move(n)
     return this.char = n ?
-      this.input[this.curr = this.curr + n] : // more eff to 2? since dont reiterate?
+      this.input[this.curr = this.curr + n] :
       this.input[++this.curr]
   }
 
-  // move this fn up into next, not the content. need sep sometimes? dont think so.
-  move(n) { // movePos, moveCaret, moveLoc, moveIndex, moveMarker, moveCursor
+  move(n) {
     if (this.isNewline()) n ? this.line = this.line + n : this.line++
     n ? this.pos = this.pos + n : this.pos++
-    if (this.isNewline()) this.pos = 0 // if not under, it set 0 before? so we get 1? just move first line under then?
+    if (this.isNewline()) this.pos = 0
   }
-  // wrap fn? add to next
-  // wrap next in parser too?
 
-  // move first, THEN go next
-
-  // move(n) { // movePos, moveCaret, moveLoc, moveIndex, moveMarker, moveCursor
-  //   n ? this.pos = this.pos + n : this.pos++
-  //   if (this.isNewline()) n ? this.line = this.line + n, this.pos = 0 : this.line++, this.pos = 0
-  // }
-
-  // start gives info about later, so we can assume. html grouping tag etc
-
-  // moveCaret, should be defualt in next, moveCaret arg false ? move() then call move() self after independatly
-
-  // if obj we use it instead? or call this. set var we can. then add more etc. at any stage
-  createToken(type, val, start) { // use assign instead? or createAfter?
+  createToken(type, val, start) {
     var token = {
       type: type,
       val:  val,
       line: this.line,
-      // startLine: line, line as arg. {line: {start, end}, col: {start, end}}
       start: start,
       end: this.pos
     }

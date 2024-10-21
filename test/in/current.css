@@ -1,0 +1,25 @@
+/* comment 1 */
+@keyframes slidein {
+  /* comment 2 */
+  from {
+    /* comment 3 */
+    transform: translateX(0% 5% 5% 5%);
+  }
+
+  to {
+    transform: translateX(auto);
+  }
+}
+@keyframes slidein2 {
+  0% {
+    transform: translateX(0px);
+  }
+
+  from {
+    transform: translateX(0% 5% 5% 5%);
+  }
+}
+
+#app {
+  animation-name: slidein;
+}

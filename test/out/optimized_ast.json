@@ -1,0 +1,124 @@
+{
+  "type": "Stylesheet",
+  "rules": [
+    {
+      "type": "KeyframesRule",
+      "name": {
+        "type": "Identifier",
+        "name": "a"
+      },
+      "arguments": []
+    },
+    {
+      "type": "KeyframesRule",
+      "name": {
+        "type": "Identifier",
+        "name": "b"
+      },
+      "arguments": [
+        {
+          "type": "StyleRule",
+          "selectors": [
+            {
+              "type": "SelectorPattern",
+              "selectors": [
+                {
+                  "type": "TagSelector",
+                  "name": "from"
+                }
+              ],
+              "specificity": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "rules": {
+            "type": "Block",
+            "declarations": [
+              {
+                "type": "Declaration",
+                "important": false,
+                "property": "transform",
+                "value": {
+                  "type": "Value",
+                  "parts": [
+                    {
+                      "type": "Function",
+                      "name": "translateX",
+                      "arguments": [
+                        {
+                          "type": "Percentage",
+                          "val": "0",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        },
+                        {
+                          "type": "Percentage",
+                          "val": "5",
+                          "isInt": true,
+                          "isEpsilon": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "StyleRule",
+      "selectors": [
+        {
+          "type": "SelectorPattern",
+          "selectors": [
+            {
+              "type": "IdSelector",
+              "name": "app"
+            }
+          ],
+          "specificity": [
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "rules": {
+        "type": "Block",
+        "declarations": [
+          {
+            "type": "Declaration",
+            "important": false,
+            "property": "animation-name",
+            "value": {
+              "type": "Value",
+              "parts": [
+                {
+                  "type": "Identifier",
+                  "name": "a"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

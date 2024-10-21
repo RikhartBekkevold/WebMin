@@ -1,0 +1,343 @@
+.example {
+  font-size: 1.2rem;
+  && > a {
+    color: tomato;
+  }
+}
+
+
+.name  {
+  2313
+  margin: ? 2px aduto;
+}
+
+/* @container <container-condition> {
+  <stylesheet>
+} */
+@container (width > 400px) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+/* with an optional <container-name> */
+@container tall (height > 30rem) {
+  h2 {
+    line-height: 1.6;
+  }
+}
+
+
+/* name (opts), query () keywordand|or|not query (), body */
+/* @container (width > 400px) and (height > 400px) {
+}
+@container not (width < 400px) {
+} */
+
+@keyframes slidein {
+  from {
+    transform: translateX(0% 5% 5% 5%);
+  }
+
+  to {
+    transform: translateX(auto);
+  }
+}
+
+.ani {
+  animation: d;
+}
+
+:root {
+  --main: white, black;
+  --secondary: blue;
+}
+
+.container {
+  --secondary: red;
+}
+
+body {
+  align: 4px var(--main, 2px) 5px;
+  align-items: var(--main);
+  image: var(--secondary);
+  display: var(--secondary);
+}
+
+@starting-style {
+  .target {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+#target {
+  opacity: 0;
+  @starting-style {
+    transform: scaleX(0);
+  }
+}
+
+.name {margin: 2px;}
+:root {
+  --main: white, black;
+}
+
+.container {
+  --secondary: white, black;
+  --secondary: red;
+}
+
+body {
+  align: 4px var(--main, 2px) 5px;
+  align-items: var(--main);
+  image: var(--secondary);
+  display: var(--secondary);
+  displdsaay: var(--third);
+}
+
+@property --third {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #c0ffee;
+}
+
+@charset "utf-8";
+@import "mobilestyle.css";
+@import URL( "mob.css" );
+@import url(#IDofSVGpath);
+@import url(my-file.svg#svg-blur);
+@import url(#svg-blur);
+
+@namespace "ads";
+@namespace URL( ads1 );
+@namespace svg url(ads2);
+@namespace svg "ads";
+@namespace svg url("ads");
+
+ /* var(--custom-prop,);   */
+ /* empty value as fallback */
+ /* var(--custom-prop, initial);  */
+ /* initial value of the property as fallback */
+ /* var(--custom-prop, #FF0000); */
+ /* var(--custom-prop, var(--default-value)); */
+ /* var(--custom-prop, var(--default-value, red)); */
+
+/* @layer module {
+  .alert {
+    border: medium solid violet;
+    background-color: yellow;
+    color: white;
+  }
+} */
+/* @layer module, state; */
+/* --main-bg-color: brown; */
+
+@layer state {}
+@layer state {
+  .alert {
+    background-color: brown;
+  }
+  p {
+    border: medium solid limegreen;
+  }
+  body {
+    border: medium solid limegreen;
+  }
+}
+@layer module, state;
+
+.adsj {
+  background-color: var(--main-bg-color);
+}
+
+@scope (.article-body > .heading, body) to (figure) {
+  img {
+    background: goldenrod;
+  }
+}
+
+
+@font-palette-values --Festival {
+  font-family: Banner Flag;
+  base-palette: 1;
+  override-colors:
+      0 rgb(123, 64, 27),
+      1 darkblue,
+      2 var(--highlight);
+}
+
+/* @font-palette-values --Festival {
+  font-family:#Banner#Flag;
+  base-palette:1;
+  override-colors:
+    0#7b401b,
+    1#00008b,
+    2 var(--highlight);
+} */
+
+
+ @font-face {
+   font-family: "MyHelvetica";
+   src: local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"),
+     url("MgOpenModernaBold.ttf");
+   font-weight: bold;
+ }
+
+
+ /* @font-face {
+   font-family:"MyHelvetica";
+   src:local("Helvetica Neue Bold")local("HelveticaNeue-Bold")
+   url("MgOpenModernaBold.ttf");
+   font-weight:bold;
+ } */
+
+ /* @scope (scope root) to (scope limit) {
+   rulesets
+ } */
+ @scope (.article-body) to (figure) {
+   img {
+     border: 5px solid black;
+     background-color: goldenrod;
+   }
+ }
+ @scope (.feature) {
+   :scope {
+     background: rebeccapurple;
+     color: antiquewhite;
+     font-family: sans-serif;
+   }
+ }
+
+
+ /* @font-palette-values --Festival {
+ font-family: Banner Flag;
+ base-palette: 1;
+ override-colors:
+     0 rgb(123, 64, 27),
+     1 darkblue,
+     2 var(--highlight);
+ } */
+ /* specific names on declarations
+ isExcludedContext */
+
+/* color: darkolivegreen; */
+/* fn can have ident. parse error. extend parse fn to accept ident as argument - functions accept ident as argument (try auto) */
+/* extend to parse | - namespace prefix usage, already does decl */
+
+/* @keyframes slidein {
+  from {
+    transform: translateX(0% 5% 5% 5%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+  @starting-style {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(0% 5% 5% 5%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+} */
+
+/* parseKeyframeSelectors, parses percent and ident/tag, then reuse parse block. then dont need arg/flag to determine if inKeyframe */
+/* keyframe dont have class/id? only tag/ident and percent? so own parsekeyframeselector makes sense?  */
+/* throw, return, pass context in one rec fn and false when back  */
+
+:root /*das*/ a {
+  /* border-radius: 10px 20px 30px 40px / 5px 15px 25px 35px; */
+  --main-bg-color: brown;
+  --das: 20PX;
+  height: 0px url("ads3") 29% url("ads4") brown;
+  /* col5or: #ffffff; */
+  /* col2or: aqua; */
+  /* col3or: black; */
+  color: blanchedalmond;
+  /* dont exists */
+  /* wont replace with colorname, and will shorten */
+}
+  /* color: darkolivegreen; */
+    /* color: darkolivegreen2; */
+
+*|* {
+  color: red;
+}
+
+.ddsa {
+  /*dasd*/
+}
+#dadsk {
+}
+
+#app > a {
+/* #app>a { can we do? */
+  margin: 20px;
+  margin-top: 60px;
+  margin-top: 61px;
+  margin-top: 62px;
+  border-radius: 30px20px20px20px;
+  color:222 rgb(4, 3, 0);
+}
+
+#app::first-line[href*='insensitive' i] {
+  margin: 2px;
+}
+
+#app::first-line {
+  margin: 2px;
+}
+
+#app a b .c, #app a b .d  {
+  margin: 20px;
+  margin-top: 620px;
+  margin-top: 61px;
+  margin-top: 62px;
+  border-radius: 30px;
+  color:222 RGB(4, 3, 0);
+}
+
+ * #app {
+  margin: 20px;
+  margin-top: 60px;
+  margin-top: calc(61px + 20px);
+  border: 30px;
+  color:222 rgb(4, 3, 0);
+}
+
+a [href*='insensitive' i] {
+  margin: 20px;
+  margin-top: 62px;
+  color:222 rgb(4, 3, 0);
+}
+a[href*='insensitive' i] {
+  margin: 20px;
+  margin-top: 62px;
+  color:222 rgb(4, 3, 0);
+}
+
+p::before {
+  margin: 20px;
+  margin-top: 62px;
+  color:222 rgb(4, 3, 0);
+}
+
+
+.hidden {
+  display: none;
+  height: var(--das);
+  /* allow: hei2ght: var(--das,); */
+  max-height: var(--das,--das);
+  width: calc(100px + 100px + 600px / 300px * 2px);
+  /* height: calc(100.px + 100px); */
+
+  /* -webkit: 2; -ms: 2; -ms-: 2; */
+}
+/* does it add or --- adds the calced value, but can calc it twice..
+only px, number or specific properties? */
