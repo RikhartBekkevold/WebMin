@@ -45,7 +45,7 @@ pp.isNamespacePrefixSeparator = function() {
 }
 
 pp.isID = function(token) {
-  return token ? token.type === tokens.id : this.token.type === tokens.id // this,isIdent
+  return token ? token.type === tokens.id : this.token.type === tokens.id
 }
 
 pp.isTag = function(token) {
@@ -88,10 +88,7 @@ pp.isSelector = function(inKeyframe) {
   )
 }
 
-// make these two preds, into one isComplex pred (isSel && isSel(peek))
 pp.isComplex = function() {
-  // console.log(this.token);
-  // console.log(this.peek());
   return (
     this.isTag(this.peek())            ||
     this.isID(this.peek())             ||
@@ -100,13 +97,9 @@ pp.isComplex = function() {
     this.isPseudoElement(this.peek())  ||
     this.isAttribute(this.peek())
     // || this.isNestingSelector(this.peek())
-    // parseCombinator?
   )
 }
 
-// exlude * that isnt followed by tag - want to see asterisk as universal. but why is specifically if tag after complex?
-// isNonUniversalComplex
-// *body || *body
 pp.isNonAsterisksComplex = function(isKeyframe) {
   return (this.isSelector(isKeyframe) && this.isComplex()) || (this.isAsterisk() && this.isTag(this.peek()))
 }
@@ -116,7 +109,7 @@ pp.isAsterisk = function(token) {
 }
 
 pp.isImportant = function() {
-  return this.token.type === tokens.punctation && this.token.val === "!" // && isIdent(this.peek()) && this.peek().val === "important"
+  return this.token.type === tokens.punctation && this.token.val === "!"
 }
 
 pp.shouldKeepImportant = function(inKeyframe) {
@@ -152,7 +145,7 @@ pp.isString = function() {
 }
 
 pp.isOperator = function() {
-  return this.token.type === tokens.operator // || this.isAsterisk(), combinator
+  return this.token.type === tokens.operator
 }
 
 pp.isComment = function() {
@@ -210,7 +203,7 @@ pp.isFontface = function() {
 pp.isLayerRule = function () {
   return this.token.type === tokens.atRule && this.token.val === "layer"
 }
-// dont visually confirm, have test that make sure string is exactly same, with same space etc
+
 pp.isFontPaletteValues = function () {
   return this.token.type === tokens.atRule && this.token.val === "font-palette-values"
 }

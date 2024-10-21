@@ -4,6 +4,9 @@ files possible, with the option to disable, rather than enable them. Can be used
 
 A CSS minifier. Can be used as CLI or API.
 
+# Try
+<a href="https://rikhartbekkevold.github.io/projects/webmin/index.html">Playground</a>
+
 <!-- The files passed to cli or api is assumed to represent all relevant CSS files. If multiple files passed they will be concatenated.
 The order of passing is the order of concatenation (the second is appended to the first etc). The output will be a single
 CSS file in the output folder specified (or working directory if none specified), unless the option split is set.. the indivdual.. parse?

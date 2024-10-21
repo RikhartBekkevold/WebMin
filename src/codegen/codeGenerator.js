@@ -10,11 +10,10 @@ module.exports = function generateCode(ast, config) {
     QuotelessUrl: {
       enter(node, parent, index, _, siblings) {
         isImportUrl(parent) || (prevSiblingIsDelimValue(siblings, index) && !isNamespaceUrl(parent)) ?
-          // import (already adds ws) or decl behind delim
+          // import (already adds ws) or declaration behind delim
           add(node.name+"("+node.val+")") :
-          // namespace, decl
+          // namespace, decl not behind delim
           add(" " + node.name+"("+node.val+")")
-          // if import dont add. also want b always for import
       }
     },
     ImportRule: {
@@ -300,7 +299,6 @@ module.exports = function generateCode(ast, config) {
         // if identifier is inside a MediaFeature - and its on the left side of :
         if (isMediaFeatureProperty(parent)) {
           add(parent.val.type === "Identifier" ? node.name + ":" : node.name + ":")
-          // make more sense to add the : in MediaFeature: {} visitor? in it, just read both props (prop, val) and add if not null
           return
         }
 
@@ -315,10 +313,6 @@ module.exports = function generateCode(ast, config) {
         // traverse obj that has fn, can set its state instead of pass path? inKeyframe etc?
 
         // forEach(next) - does current check if deleted element?
-
-        // always add " "
-        // when not to? see all the times we dont want too. dont detect when
-        // !isImportUrl add
 
         if (isFontFeature(parent)) {
           let noSpace = prevSiblingIsListSepOrString(siblings, index)
