@@ -132,14 +132,16 @@
               "type": "SelectorPattern",
               "selectors": [
                 {
-                  "type": "TagSelector",
-                  "name": "from"
+                  "type": "Percentage",
+                  "val": "0",
+                  "isInt": true,
+                  "isEpsilon": false
                 }
               ],
               "specificity": [
                 0,
                 0,
-                1
+                0
               ]
             }
           ],
@@ -158,26 +160,9 @@
                       "name": "translateX",
                       "arguments": [
                         {
-                          "type": "Percentage",
+                          "type": "Dimension",
                           "val": "0",
-                          "isInt": true,
-                          "isEpsilon": false
-                        },
-                        {
-                          "type": "Percentage",
-                          "val": "5",
-                          "isInt": true,
-                          "isEpsilon": false
-                        },
-                        {
-                          "type": "Percentage",
-                          "val": "5",
-                          "isInt": true,
-                          "isEpsilon": false
-                        },
-                        {
-                          "type": "Percentage",
-                          "val": "5",
+                          "unit": "px",
                           "isInt": true,
                           "isEpsilon": false
                         }

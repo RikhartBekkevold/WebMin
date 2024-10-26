@@ -9,15 +9,14 @@ pp.parse = function() {
 
   // isCharsetRule includes config.removeCharset
   if (this.isCharsetRule()) ast.rules.push(this.parseCharset()), this.next()
-  if (this.config.prependComment !== "") ast.rules.push(this.parseComment(this.config.prependComment))
+  // if (this.config.prependComment !== "") ast.rules.push(this.parseComment(this.config.prependComment))
 
-  // if config then add instead, go next after
   // if (this.isWhitespace()) this.next()
 
-  while (this.token !== undefined) { // for token of this.tokens - this.tokens.forEach
+  while (!this.isEnd()) {
     var node = this.parseToplevel()
     if (node) ast.rules.push(node)
-    this.next()
+    this.next(null, null, true)
   }
 
   return ast
@@ -189,7 +188,7 @@ pp.parseBlock = function(noImp) {
 
     // can parse infinitely nested stylerules, but only & can trigger
     // allow & only to parse nested stylerules
-    else if (this.isNestingSelector())  node.declarations.push(this.parseSelectorList())
+    else if (this.isNestingSelector()) node.declarations.push(this.parseSelectorList())
 
     else this.parseUnknown()
     this.next()
@@ -215,7 +214,6 @@ pp.parseDeclaration = function(noImp) {
   if (this.config.addLocationData)
     node.loc = this.createLoc()
 
-  // if correct val, add, else add unknown?
   node.property = this.token.val
   this.next(2)
 

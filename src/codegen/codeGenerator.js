@@ -1,4 +1,5 @@
 const { traverseParent } = require('../parser/src/traverse.js');
+const { empty, createComment, isComment } = require('./util.js');
 
 module.exports = function generateCode(ast, config) {
   console.log("Generating code");
@@ -6,9 +7,12 @@ module.exports = function generateCode(ast, config) {
   var inKeyframe  = false
   var inMedia     = false
 
+  if (!empty(config.prependComment))
+    output = createComment(config.prependComment)
+
   var visitors = {
     QuotelessUrl: {
-      enter(node, parent, index, _, siblings) {
+      enter(node, parent, index, _, siblings) { // afterDelimiter
         isImportUrl(parent) || (prevSiblingIsDelimValue(siblings, index) && !isNamespaceUrl(parent)) ?
           // import (already adds ws) or declaration behind delim
           add(node.name+"("+node.val+")") :
@@ -307,13 +311,6 @@ module.exports = function generateCode(ast, config) {
           return
         }
 
-        // path.next(), dontSkip() - for opti (diff traversers), but also so dont have to return values to tell outer fn what to do. outer fn gives the options as arg
-        // path.prevSibling - have it better prepare the data it already passes. add to a single object, so not so many args with _
-        // preds, what other fns -   // predicates also then better? but we never know if all parser users need them?
-        // traverse obj that has fn, can set its state instead of pass path? inKeyframe etc?
-
-        // forEach(next) - does current check if deleted element?
-
         if (isFontFeature(parent)) {
           let noSpace = prevSiblingIsListSepOrString(siblings, index)
           add(node.name, noSpace)
@@ -326,8 +323,17 @@ module.exports = function generateCode(ast, config) {
         }
 
         isFunctionArgument(parent)
-          ? add(parent.type === "Value" && parent.arguments.indexOf(node) !== 0  || parent.type === "MediaRule" || isImportUrl(parent) ? " " + node.name : node.name)
-          : add(!prevSiblingIsDelimValue(siblings, index) || parent.type === "MediaRule" || isImportUrl(parent) ? " " + node.name : node.name)
+          ? add(
+            parent.type === "Value"
+            && parent.arguments.indexOf(node) !== 0
+            || parent.type === "MediaRule"
+            || isImportUrl(parent) ? " " + node.name : node.name
+          )
+          : add(
+            !prevSiblingIsDelimValue(siblings, index)
+            || parent.type === "MediaRule"
+            || isImportUrl(parent) ? " " + node.name : node.name
+          )
       }
     },
     Dimension: {
@@ -347,7 +353,7 @@ module.exports = function generateCode(ast, config) {
         if (parent && parent.operator) add(parent.operator)
 
         add(isImportUrl(parent) ?
-              `${node.delimiter + node.val + node.delimiter}` : // why does import need space after?
+              `${node.delimiter + node.val + node.delimiter}` :
 
                 (parent.type === "Value" ?
                     `${node.delimiter}` + node.val + `${node.delimiter}` :
@@ -362,14 +368,6 @@ module.exports = function generateCode(ast, config) {
     },
     Hex: {
       enter(node, parent) {
-        // check if hex in:
-        // @font-palette-values --Alternate {
-        // font-family: "Bungee Spice";
-        // override-colors:
-          // 0 #00ffbb,
-          // 1 #007744;
-        // }
-        // needs space.
         add("#" + node.val)
       }
     },
@@ -423,7 +421,7 @@ module.exports = function generateCode(ast, config) {
            node.type === "Function"      ||
            node.type === "QuotelessUrl"  ||
            node.type === "Condition"
-           // mediafeature?
+           // mediafeature
            // isValueDelim
   }
 
@@ -436,13 +434,11 @@ module.exports = function generateCode(ast, config) {
   }
 
   function prevSiblingIsDelimValue(siblings, index) {
-    // have isSiblings as own check. the req to do nospace? need to set "" default? or else add(val)
     return !hasSiblings(siblings) || index === 0 || isValueEndingWithDelim(siblings[index-1])
   }
 
   function isAfterAtRuleKeyword(parent, index) {
-    return parent.type === "ContainerRule" && index === 0  // siblingNum. siblingIdx
-    // expand
+    return parent.type === "ContainerRule" && index === 0
   }
 
   // need to exclude if in PageRule here too?
@@ -450,8 +446,6 @@ module.exports = function generateCode(ast, config) {
      return node.type === "ComplexSelector" ||
             // check index only if not inside complex
             idx === 0 ||
-            // pass siblings. node.arr. then it doesnt assume node can only be in an array called selectors
-            // assume selectors if arg not set?
             node.selectors[idx-1].type === "Combinator" ||
             node.selectors[idx-1].type === "NamespacePrefixSeparator"
   }

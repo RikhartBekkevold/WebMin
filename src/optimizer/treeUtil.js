@@ -33,8 +33,11 @@ function optimizeValueAmount(values) {
 }
 
 
-// arranges declaration values in an order that minimizes the number of whitespaces needed to separate values,
-// by using the values own delimiters. essentially makes sure no delims are next to eachother.
+/**
+ * Arranges declaration values in an order that minimizes the
+ * number of whitespaces needed to separate values, by using the values
+ * own delimiters. essentially makes sure no delims are next to eachother.
+ */
 function optimizeValueOrder(parts) {
   var lastIndex = parts.length-1
   var lastValue = parts[lastIndex]
@@ -56,6 +59,10 @@ function optimizeValueOrder(parts) {
 }
 
 
+/**
+ * Extracts the value of each
+ * node in an expression.
+ */
 function getExprParts(args) {
   var exprArray = []
   for (var arg of args)
@@ -508,7 +515,10 @@ function sameValueExact(a, b) {
 }
 
 
-// determines if two functions (calc(20px + 30px)) are exactly the same visually
+/**
+ * Determines if two functions (calc(20px + 30px))
+ * are exactly the same visually.
+ */
 function isFunctionSame(a, b) {
   // console.log(a, b);
   // validate name and length. validate length so a: calc(20px), b: calc(20px + 20px) isnt true below
@@ -549,7 +559,7 @@ function hasAllLonghandProps(found) {
 // rgb(2 2 2)
 // rgb(2 2 2 / 50%)
 // rgb(2, 2, 2, 50%)
-function getRGBValues(args) { // fn
+function getRGBValues(args) {
   var values = []
   for (arg of args) {
     if (arg.type === "Number" || arg.type === "Percent")
@@ -559,12 +569,14 @@ function getRGBValues(args) { // fn
 }
 
 
-// does not ws
+// does not ws, unless knows what printer will add.
 function getDeclarationLen() {
-
+// a map between values and ws, and sequence
+// can be used both here, and by printer to add
 }
 
-
+// what node should trigger/print what?
+// how to decide which is responsible for ws, and
 
 
 function getAtomLength(atom) {
@@ -594,9 +606,8 @@ function getFunctionLength() {
   var paran = 2
   var len = node.name.length + paran
 
-  for (var node of arguments) {
+  for (var node of arguments)
     len += getAtomLength()
-  }
 
   return len
 }

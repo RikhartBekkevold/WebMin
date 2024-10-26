@@ -7,10 +7,15 @@ module.exports.internalParserConfig = {
 
 // all options exposed to user of minifier
 module.exports.defaultConfig = {
+  // skipOptiStep. will only parse and print. so remove info. optimize: false, default true.
+  // debug: strict|verbose|simple. to log or write to log files. or write the steps.
+  // writeSteps.
   // prepended either at start of file, or after charset rule. need to include "/**/". prepends always regardless of truthfulness of other comment config
   prependComment: "",
   keepFirstComment: false,
+  // legacy
   removeCharset: false,
+  // illigal/ignored? 
   keepImportantInKeyframes: false,
   removeEmptyAtRules: true,
   // stylerules containing comments are kept - removes if in media/at rules?

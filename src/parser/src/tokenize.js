@@ -14,7 +14,8 @@ exports.Tokenizer = class Tokenizer {
 
 
   tokenize() {
-    while(this.curr < this.input.length) {
+    while(this.curr < this.input.length) { // cache length, since we dont modify the str?
+      // dont cache lenght, rather slice when consume?
 
       if (this.isWhitespace()) {
         this.move()
@@ -56,7 +57,7 @@ exports.Tokenizer = class Tokenizer {
         while (!this.isCommentEnd()) {
           val += this.char
           this.move(), this.next()
-          this.isEnd(line, pos)
+          this.assertEnd(line, pos)
         }
 
         if ((this.config.keepFirstComment && this.firstComment) || !this.config.removeComments) {
@@ -165,7 +166,7 @@ exports.Tokenizer = class Tokenizer {
         this.next()
         if (this.char === ":") {
           token.val += ":"
-          this.move(); this.next()
+          this.move(), this.next()
         }
         continue
       }
@@ -217,7 +218,7 @@ exports.Tokenizer = class Tokenizer {
         while (!this.isStringEnd(delimiter)) {
           val += this.char
           this.move(), this.next()
-          this.isEnd(line, start) // assertEnd
+          this.assertEnd(line, start)
         }
         this.move()
         this.next()
@@ -258,20 +259,22 @@ exports.Tokenizer = class Tokenizer {
         // shl indicates url () wrong, so assume no space
         if (this.isQuotelessUrl(val)) {
           var content = ""
-          let start = this.pos
+          let start = this.pos // setStart - assert end and createToken, reads this.start instead of args
+          let line = this.line
           this.move()
           this.next()
 
           // if missing ) loop is endless (like str), untill gets to end - try it
-          // just breaks loop on this.char == undefined? - add isEnd assert?
+          // just breaks loop on this.char == undefined? - add assertEnd assert?
           // does create token. but move/next after loop fails?
           while (this.char !== ")") {
-            content += this.char
+            content += this.char // consume, record, next,
             this.move()
             this.next()
+            this.assertEnd(line, start) // inc in next
           }
 
-          // import media
+          // import media move past ) without recoding, because we parse fn as a whole as one token,
           this.move()
           this.next()
 
@@ -280,6 +283,10 @@ exports.Tokenizer = class Tokenizer {
 
           continue
         }
+
+        // this.recordStartPos, setStartPos
+        // this.getStartPos // null if not inside - reset after get. internally?
+        // isInsideClosingDelim
 
         this.createToken(tokens.ident, val, start)
         continue
@@ -304,7 +311,7 @@ exports.Tokenizer = class Tokenizer {
     return epsilon
   }
 
-  isEnd(line, pos) {
+  assertEnd(line, pos) {
     if (this.curr >= this.input.length) {
       throw new SyntaxError("Unexpected end of input. Unclosed comment or string starting at line " + line + ":" + pos);
     }
